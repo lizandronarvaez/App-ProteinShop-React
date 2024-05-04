@@ -5,14 +5,14 @@ import { Trolley } from "../index"
 export const Nav_Account_Cart = () => {
     const user = JSON.parse(localStorage.getItem("cliente"));
     const [trolleyIsOpen, setTrolleyIsOpen] = useState(false)
-    useEffect(() => {}, [trolleyIsOpen])
+    useEffect(() => { }, [trolleyIsOpen])
 
     return (
         <>
             <div className='login-checkout'>
                 {
                     user ?
-                        <Link to={"/profile"}>
+                        <Link to="/profile">
                             {
                                 user?.fullname
                                     ? user.fullname
@@ -20,7 +20,7 @@ export const Nav_Account_Cart = () => {
                             }
                             <img src="../../../public/svg/account.svg" alt="account" />
                         </Link>
-                        : <Link to={"/account"}>
+                        : <Link to="/account">
                             {
                                 !user?.fullname
                                     ? "Cuenta"
