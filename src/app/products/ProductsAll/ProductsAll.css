@@ -1,0 +1,11 @@
+
+.product-all h3{
+    text-align: center;
+}
+.grid-products-all{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 5rem;
+    align-items: self-end;
+}
+

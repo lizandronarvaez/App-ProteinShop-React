@@ -1,0 +1,25 @@
+
+.nav-form {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    padding: 3rem;
+}
+
+.nav-form h2 {
+    border: .1rem solid rgba(0, 0, 0, .2);
+    padding: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2.6rem;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.nav-form h2 span {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+

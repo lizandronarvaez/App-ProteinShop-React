@@ -1,0 +1,70 @@
+.profile-user-grid {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    border: 1px solid grey;
+}
+
+.profile-user-nav {
+    width: 100%;
+}
+
+.profile-user-nav ul {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #2f4f4f;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-user-nav ul li {
+    list-style-type: none;
+    cursor: pointer;
+    background-color: #2f4f4f;
+    width: 100%;
+    padding: 1.5rem;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    border: none;
+}
+
+.profile-user-nav ul li:hover {
+    background-color: white;
+    color: #000;
+}
+
+.profile-user-data form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5rem;
+    padding: 5rem;
+
+}
+
+.profile-user-data form>div {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-user-data form>div:last-of-type {
+    grid-column: 1/3;
+}
+
+.profile-user-data form>div label {
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.profile-user-data form>div input {
+    padding: 1rem 1.5rem;
+    text-transform: uppercase;
+}
+
+.profile-user-data form>div button {
+    padding: 1.5rem;
+    text-transform: uppercase;
+    cursor: pointer;
+}

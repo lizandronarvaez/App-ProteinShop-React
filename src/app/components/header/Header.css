@@ -1,0 +1,16 @@
+.header{
+    background-color: #6b97c6;
+}
+
+.header-info{
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+
+.header-info p{
+    font-size: 1.3rem;
+    color: #ffffff;
+    padding-right: 1rem;
+    margin: 1rem 0;
+}

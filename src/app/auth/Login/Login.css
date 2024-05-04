@@ -1,0 +1,25 @@
+.form-login .form-login-box{
+    padding: 0 5rem;
+}
+
+.form-login h2{
+    text-align: center;
+}
+.form-login .form-login-box input{
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem 0;
+    outline: none;
+}
+
+.form-login .form-login-box button{
+    width: 100%;
+    padding: 1rem;
+    background-color: #1c81ee;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    border-radius: .5rem;
+    cursor: pointer;
+}

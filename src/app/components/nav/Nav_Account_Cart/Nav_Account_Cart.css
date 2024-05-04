@@ -1,0 +1,12 @@
+.login-checkout {
+    display: flex;
+    align-items: flex-end;
+    color: #000;
+}
+
+.login-checkout a {
+    margin: 0 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+}

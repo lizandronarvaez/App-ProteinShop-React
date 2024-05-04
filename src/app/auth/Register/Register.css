@@ -1,0 +1,23 @@
+.form-register {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form-register-box input {
+    width: 100%;
+    padding: 1rem;
+    outline: none;
+}
+
+.register-btn_submit button {
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: #1c81ee;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    border-radius: .5rem;
+    cursor: pointer;
+}

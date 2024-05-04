@@ -1,0 +1,11 @@
+.grid-brand-item{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+.grid-brand-item div{
+    border: .1rem solid rgba(184, 184, 184, .3);
+    text-align: center;
+}
+.grid-brand-item img{
+    width: 20rem;
+}

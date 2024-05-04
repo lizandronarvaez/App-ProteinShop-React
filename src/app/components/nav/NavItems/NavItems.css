@@ -1,0 +1,22 @@
+.nav-items{
+    background-color: #6b97c6;
+}
+.nav-items ul {
+    display: flex;
+    justify-content: center;
+    padding: .5rem 0;
+    margin: 0;
+}
+
+.nav-items ul li{
+    list-style: none;
+    cursor: pointer;
+    border-right: 1px solid #fff;
+    padding: 1rem 4rem;
+    color: #fff;
+
+}
+
+.nav-items ul li a{
+    color: #fff;
+}

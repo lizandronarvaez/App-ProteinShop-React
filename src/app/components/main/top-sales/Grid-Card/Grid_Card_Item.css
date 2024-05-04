@@ -1,0 +1,39 @@
+.grid-card {
+    border: 1px solid #DADBDC;
+    border-radius: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.grid-card .grid-card-img img {
+    width: 7rem;
+}
+
+.grid-card .product-info {
+    display: flex;
+    border-top: 1px solid #DADBDC;
+    padding: 2rem 1.5rem;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+}
+
+.grid-card .product-info .product-info-details {
+    margin: 0 1rem;
+}
+
+.product-cart p {
+    margin: 0;
+    font-size: 1.6rem;
+    cursor: pointer;
+    padding: 1rem 1.5rem;
+    background-color:rgb(64, 108, 231) ;
+    color: white;
+    border-radius: .5rem;
+}
+
+.product-cart input {
+    width: 10rem;
+    padding: 1rem ;
+}

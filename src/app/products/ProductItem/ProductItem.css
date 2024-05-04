@@ -1,0 +1,37 @@
+.product-item {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.product-item img {
+    width: 10rem;
+}
+
+.product-item-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-bottom: 2px solid #DADBDC;
+}
+
+.product-item-info p:first-of-type {
+    font-size: 1.3rem;
+    margin: 1rem 0;
+}
+
+.product-item-description p {
+    font-size: 1.3rem;
+}
+
+.product-item-info p {
+    margin: 0 1rem;
+}
+
+.product-add-cart p {
+    padding: 1rem 2rem;
+    background-color: rgb(64, 108, 231);
+    color: white;
+    border-radius: .5rem;
+    cursor: pointer;
+}
