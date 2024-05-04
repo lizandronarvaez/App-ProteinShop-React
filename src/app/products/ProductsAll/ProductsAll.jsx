@@ -5,7 +5,7 @@ import "./ProductsAll.css";
 export const ProductsAll = ({ categories }) => {
     const [dataProducts, setDataProducts] = useState([]);
     const getDataDB = async () => {
-        const { data } = await fetch("/products",{method:"get"});
+        const { data } = await springBootAxios.get("/products");
         setDataProducts(data)
     }
     // Filtrar los productos
