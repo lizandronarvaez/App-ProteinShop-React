@@ -7,7 +7,8 @@ export const Top_Sales = () => {
 
     const getDataDB = async () => {
         const { data } = await springBootAxios.get("/products")
-        const filterProductsTop = data.filter(product => product.price >= 10 && product.price <= 30)
+        // TODO VERIFICAR LOS PRECIOS CUANDO SE TENGA MAS PRODUCTOS
+        const filterProductsTop = data.filter(product => product.price >= 10 && product.price <= 100)
         setProducts(filterProductsTop)
     }
     useEffect(() => {
