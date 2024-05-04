@@ -5,7 +5,7 @@ export const NavItems = () => {
   return (
     <nav className='nav-items'>
       <ul>
-        <li><Link to={"products"}>Productos</Link> </li>
+        <li><Link to="/products">Productos</Link></li>
         <li>Accesorios</li>
         <li>Top Ventas</li>
         <li>Promociones</li>
