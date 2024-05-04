@@ -1,47 +1,50 @@
+/* Encabezado del perfil del usuario */
+.profile-user h2 {
+    padding: 5rem 2rem;
+}
+
+/* Contenedor principal del perfil del usuario */
 .profile-user-grid {
     display: grid;
     grid-template-columns: 20% 80%;
-    border: 1px solid grey;
+    min-height: 100vh;
 }
 
+/* Barra de navegación del perfil del usuario */
 .profile-user-nav {
     width: 100%;
+    background-color: #1c2b2b;
+    padding: 2rem;
 }
 
 .profile-user-nav ul {
-    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    background-color: #2f4f4f;
     margin: 0;
     padding: 0;
 }
 
 .profile-user-nav ul li {
+    display: flex;
+    align-items: flex-end;
     list-style-type: none;
     cursor: pointer;
-    background-color: #2f4f4f;
     width: 100%;
     padding: 1.5rem;
-    text-align: center;
-    color: white;
-    text-transform: uppercase;
-    border: none;
+    color: #adaeaf;
+    text-transform: capitalize;
 }
 
 .profile-user-nav ul li:hover {
-    background-color: white;
-    color: #000;
+    color: #f0f0f0;
 }
 
+/* Formulario de datos del perfil del usuario */
 .profile-user-data form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 5rem;
     padding: 5rem;
-
 }
 
 .profile-user-data form>div {
@@ -55,12 +58,16 @@
 
 .profile-user-data form>div label {
     margin-bottom: 1rem;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .profile-user-data form>div input {
+    color: #8d8d8d;
     padding: 1rem 1.5rem;
-    text-transform: uppercase;
+}
+
+.profile-user-data form>div input:focus {
+    color: #201d1d;
 }
 
 .profile-user-data form>div button {
