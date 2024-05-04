@@ -5,8 +5,10 @@
 }
 
 .login-checkout a {
+    width: 15rem;
     margin: 0 1rem;
     cursor: pointer;
     display: flex;
+    justify-content: center;
     align-items: flex-end;
 }
