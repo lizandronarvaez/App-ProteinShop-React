@@ -1,65 +1,35 @@
 import React from 'react'
 import "./Profile.css";
+import userProfile from "../../../../public/svg/userProfile.svg"
+import userOrders from "../../../../public/svg/userOrders.svg"
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
+import { ProfileForm } from './ProfileForm';
+import { OrdersUsers } from '../Orders/OrdersUsers';
+
 export const Profile = () => {
+    const { pathname } = useLocation();
+
     // todo:Obetener los datos del cliente desde el local storage
-    const user=JSON.parse(localStorage.getItem("cliente"));
-    console.log(user)
+    const user = JSON.parse(localStorage.getItem("cliente"));
     // TODO: ALMACENAR LOS DATOS EN UN OBJETO
 
     // todo: enviar peticion al backend para actualizar los datos
 
-    // 
     return (
-        <div className='container profile-user'>
+        <div className='profile-user'>
             <h2>Perfil Usuario</h2>
             <div className='profile-user-grid'>
                 <div className='profile-user-nav'>
                     <ul>
-                        <li>Datos Personales</li>
-                        <li>Pedidos</li>
-                        <li>Datos</li>
-                        <li>Datos</li>
-                        <li>Datos</li>
+                        <Link to="/profile"><li><img src={userProfile} alt={userProfile} />Datos Personales</li></Link>
+                        <Link to="/profile/orders_users"><li><img src={userOrders} alt={userProfile} />Pedidos</li></Link>
                     </ul>
                 </div>
                 <div className='profile-user-data'>
-                    <form>
-                        <div>
-                            <label htmlFor="">Nombre</label>
-                            <input type="text" name="fullname" value={user.fullname}/>
-                        </div>
-                        <div>
-                            <label htmlFor="">Email</label>
-                            <input type="text" name="email" value={user.email} />
-                        </div>
-                        <div>
-                            <label htmlFor="">Password</label>
-                            <input type="text" name="password" placeholder='contraseña'/>
-                        </div>
-                        <div>
-                            <label htmlFor="">Teléfono</label>
-                            <input type="text" name="phone" value={user.phone}/>
-                        </div>
-                        <div>
-                            <label htmlFor="">Dirección</label>
-                            <input type="text" name="address" value={user.address} />
-                        </div>
-                        <div>
-                            <label htmlFor="">Ciudad</label>
-                            <input type="text" name="city" value={user.city}/>
-                        </div>
-                        <div>
-                            <label htmlFor="">País</label>
-                            <input type="text" name="country" value={user.country}/>
-                        </div>
-                        <div>
-                            <label htmlFor="">Código Postal</label>
-                            <input type="text" name="postalcode" value={user.postalcode}/>
-                        </div>
-                        <div>
-                            <button type='submit'>Guardar Cambios</button>
-                        </div>
-                    </form>
+                    <Routes>
+                        <Route exact path="/" element={<ProfileForm user={user} />} />
+                        <Route exact path="/orders_users" element={<OrdersUsers />} />
+                    </Routes>
                 </div>
             </div>
         </div>
