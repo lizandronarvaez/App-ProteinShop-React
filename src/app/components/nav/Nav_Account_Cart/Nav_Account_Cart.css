@@ -5,10 +5,17 @@
 }
 
 .login-checkout a {
-    width: 15rem;
     margin: 0 1rem;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: flex-end;
+}
+
+.login-checkout a:first-child{
+    width: 20rem;
+}
+.login-checkout .user-authenticated{
+    text-transform: capitalize;
+    font-size: 1.4rem;
 }
