@@ -13,10 +13,7 @@ export const ProductItem = ({ product }) => {
     return (
 
         <div className='product-item'>
-            <img
-                src={product.imageProduct ?
-                    ` http://localhost:3000/api/uploads/products/${product.imageProduct}`
-                    : "../../../../public/productos/life-pro-meno-pause-120-vegancaps.jpg"} alt={product.imageProduct} />
+            <img src={product.imageProduct ? ` ${product.imageProduct}` : null} />
 
             <div className='product-item-info'>
                 <p>{product.fullname}</p>
