@@ -25,18 +25,16 @@ export const RegisterForm = () => {
     e.preventDefault();
 
     try {
-      const data = await springBootAxios.post("/clients", form)
-      console.log(data)
-      
+      const { data: { status, message } } = await springBootAxios.post("/clients", form)
+      if (status == 200) {
+        alert(message)
+        navigate("/account")
+        return;
+      }
+      alert("Hubo un error")
     } catch (error) {
       console.log(error)
     }
-    // if (status == 200) {
-    //   alert(data.message)
-    //   // navigate("/account")
-    //   return;
-    // }
-    // alert("Hubo un error")
   }
 
   useEffect(() => { if (data) setForm(({ ...form, email: data })); }, [data]);
