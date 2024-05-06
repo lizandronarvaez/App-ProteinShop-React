@@ -7,18 +7,15 @@ export const Top_Sales = () => {
 
     const getDataDB = async () => {
         const { data } = await springBootAxios.get("/products")
-        // TODO VERIFICAR LOS PRECIOS CUANDO SE TENGA MAS PRODUCTOS
-        const filterProductsTop = data.filter(product => product.price >= 10 && product.price <= 100)
+        const filterProductsTop = data.filter(product => product.price >= 10 && product.price <= 50)
         setProducts(filterProductsTop)
     }
-    useEffect(() => {
-        getDataDB();
-    }, [])
+    useEffect(() => { getDataDB(); }, [])
     return (
         <div className='container products-tops-sales'>
             <h2>TOP Productos Ventas</h2>
             <div className='grid'>
-                <Grid_Card_Item productsTop={products}/>
+                <Grid_Card_Item productsTop={products} />
             </div>
         </div>
     )
