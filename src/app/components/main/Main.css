@@ -1,6 +1,6 @@
 
 .main-img{
-    background-image: url("https://scontent.fmad10-2.fna.fbcdn.net/v/t39.30808-6/382018900_854979946195596_8043668076855637556_n.jpg?stp=c0.5000x0.5000f_dst-jpg_e15_p1610x770_q60_tt1_u&efg=eyJ1cmxnZW4iOiJ1cmxnZW5fZnJvbV91cmwifQ&_nc_cid=0&_nc_ad=z-m&_nc_ht=scontent.fmad10-2.fna&_nc_cat=106&_nc_ohc=DOVWgfUEwM4Q7kNvgGmVht4&ccb=1-7&_nc_sid=5f2048&oh=00_AfBtHKIMgEDrq-D6AsatufuU_VVClfsYfP3ILJtOa5bhgQ&oe=663B0FAF");
+    background-image: url("../../../../public/backgrounds-main/background-main.webp");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -30,6 +30,5 @@
 }
 
 .components-main{
-    max-width: 120rem;
     margin: 0 auto;
 }
