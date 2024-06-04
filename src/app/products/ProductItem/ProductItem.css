@@ -28,10 +28,18 @@
     margin: 0 1rem;
 }
 
-.product-add-cart p {
+.product-add-cart .productAddCart,
+.product-add-cart .productIsCart {
     padding: 1rem 2rem;
-    background-color: rgb(64, 108, 231);
     color: white;
     border-radius: .5rem;
     cursor: pointer;
+}
+
+.product-add-cart .productAddCart {
+    background-color: rgb(64, 108, 231);
+}
+
+.product-add-cart .productIsCart {
+    background-color: rgb(231, 64, 109);
 }

@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./ProductItem.css";
-export const ProductItem = ({ product }) => {
-    const productInfo = {
-        id: product.id,
-        fullname: product.fullname,
-        description: product.description,
-        category: product.category.name.toLowerCase(),
-        imageProduct: product.imageProduct,
-        price: product.price,
-        quantity: product.quantity
+import { useLocation, useParams } from "react-router-dom";
+export const ProductItem = ({ product, addProductListCart }) => {
+    const [isCart, setIsCart] = useState(false);
+
+    const handleAddToCart = () => {
+        addProductListCart(product);
+        setIsCart(true);
     }
+    useEffect(() => { }, [isCart])
+
     return (
 
         <div className='product-item'>
@@ -23,8 +23,14 @@ export const ProductItem = ({ product }) => {
                 <p>{product.description}</p>
             </div>
             <div className='product-add-cart'>
-                <p>Añadir a carrito</p>
+
+                {
+                    !isCart
+                        ? <p className='productAddCart' onClick={handleAddToCart}>Añadir a carrito</p>
+                        : <p className='productIsCart'>Producto Añadido</p>
+                }
+
             </div>
-        </div>
+        </div >
     )
 }
