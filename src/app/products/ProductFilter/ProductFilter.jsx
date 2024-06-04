@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./ProductFilter.css";
 import { springBootAxios } from '../../../api/axios';
+import { SpinnerCategory } from '../Spinner/SpinnerCategory';
 
 export const ProductFilter = ({ nameFilter, onCategoriesChange }) => {
 
@@ -30,13 +31,18 @@ export const ProductFilter = ({ nameFilter, onCategoriesChange }) => {
             <h3>{nameFilter}</h3>
             <div className='filter-product-checkbox'>
                 {
-                    dataCategories.map(({ und, name }, i) => (
-                        <div className='product-checkbox-type' key={i}>
-                            <p>({und})</p>
-                            <label htmlFor="tipo">{name}</label>
-                            <input type="checkbox" name="tipo" value={name} onChange={onCategoriesValues} />
-                        </div>
-                    ))
+                    !dataCategories.length ? (
+                        <SpinnerCategory />
+                ):(
+
+                dataCategories.map(({und, name}, i) => (
+                <div className='product-checkbox-type' key={i}>
+                    <p>({und})</p>
+                    <label htmlFor="tipo">{name}</label>
+                    <input type="checkbox" name="tipo" value={name} onChange={onCategoriesValues} />
+                </div>
+                )
+                ))
                 }
             </div>
         </div>
