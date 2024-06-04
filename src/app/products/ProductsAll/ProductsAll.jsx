@@ -2,20 +2,39 @@ import React, { useEffect, useState } from 'react'
 import { ProductItem } from '../ProductItem/ProductItem'
 import { springBootAxios } from '../../../api/axios';
 import "./ProductsAll.css";
+import { SpinnerProducts } from '../Spinner/SpinnerProducts';
 export const ProductsAll = ({ categories }) => {
     const [dataProducts, setDataProducts] = useState([]);
+    const [productListCart, setProductListCart] = useState([]);
     const getDataDB = async () => {
         const { data } = await springBootAxios.get("/products");
         setDataProducts(data)
     }
-    // Filtrar los productos
-    useEffect(() => { getDataDB(); }, [])
+    const addProductCartList = (product_data) => setProductListCart([...productListCart, product_data]);
+
+    useEffect(() => {
+        const arrayCart = JSON.stringify(productListCart);
+        localStorage.setItem('cart_products', arrayCart);
+        getDataDB();
+    }, [productListCart])
     return (
         <>
             {
                 !dataProducts?.length ?
                     (
-                        <h3>Cargando productos...</h3>
+                        <div className='products-all'>
+                            <div className='grid-products-all'>
+                                <SpinnerProducts />
+                                <SpinnerProducts />
+                                <SpinnerProducts />
+                                <SpinnerProducts />
+                                <SpinnerProducts />
+                                <SpinnerProducts />
+                                <SpinnerProducts />
+                                <SpinnerProducts />
+                            </div>
+                        </div>
+
                     ) :
                     (
 
@@ -32,7 +51,7 @@ export const ProductsAll = ({ categories }) => {
 
                                         )))
                                         : dataProducts.map((products, i) => (
-                                            <ProductItem product={products} checkedCategories={categories} key={products.id} />
+                                            <ProductItem addProductListCart={addProductCartList} product={products} checkedCategories={categories} key={products.id} />
                                         ))}
                             </div>
                         </div>
