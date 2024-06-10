@@ -13,9 +13,7 @@ export const Login = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState(formValues);
 
-    const onInputChange = ({ target: { value, name } }) => {
-        setFormData({ ...formData, [name]: value })
-    }
+    const onInputChange = ({ target: { value, name } }) => setFormData({ ...formData, [name]: value });
 
     const onSumbitFormData = async (e) => {
         e.preventDefault();
@@ -27,19 +25,14 @@ export const Login = () => {
             });
             return;
         }
-
-        // TODO: ENVIAR LA PETICION AL BACKEND
+        // Inicio de sesion
         const { data: { token, client, message, status } } = await springBootAxios.post("/clients/login", formData)
         localStorage.setItem("token", token)
         localStorage.setItem("cliente", JSON.stringify(client))
 
-        // todo: realizar el login y hacer el redireccionamiento al a la pagina principal
         if (status === 200) {
-            Swal.fire({
-                title: message,
-                timer: 1500
-            });
-            return navigate("/profile")
+            Swal.fire({ title: message, timer: 1500 });
+            navigate("/profile/user")
         }
     }
 
