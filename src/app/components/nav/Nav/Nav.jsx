@@ -7,7 +7,9 @@ export const Nav = () => {
     return (
         <div className='nav'>
             <div className='nav-form'>
-                <h2><Link to={"/"}>Protein<span>Shop</span> </Link></h2>
+                <h2>
+                    <Link to={"/"}>Protein<span>Shop</span> </Link>
+                </h2>
                 <Nav_Form />
                 <Nav_Account_Cart />
             </div>

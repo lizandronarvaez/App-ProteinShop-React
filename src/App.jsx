@@ -1,10 +1,14 @@
-import { BrowserRouter } from "react-router-dom";
 import { RouterApp } from "./router/RouterApp";
+import { AuthProvider } from "./app/auth/context/authContext";
+import { CartTrolleyProvider } from "./app/context/CartTrolleyContext";
 function App() {
   return (
-    <BrowserRouter>
-      <RouterApp />
-    </BrowserRouter>
+
+    <AuthProvider>
+      <CartTrolleyProvider>
+        <RouterApp />
+      </CartTrolleyProvider>
+    </AuthProvider>
   )
 }
 

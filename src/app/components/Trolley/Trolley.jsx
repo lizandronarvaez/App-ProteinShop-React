@@ -1,32 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./Trolley.css";
 import cartout from "../../../../public/svg/cart_out.svg";
+import { useCart } from '../../context/CartTrolleyContext';
 export const Trolley = ({ trolleyIsOpen, setTrolleyIsOpen }) => {
-
-  const [isActive, setIsActive] = useState(true)
-  const [cartProducts, setCartProducts] = useState([]);
+  const navigate = useNavigate();
+  const { cartProducts, setCartProducts } = useCart();
   const [totalProductsCart, setTotalProductsCart] = useState(0);
 
-  const closeDivCart = () => {
-    setTrolleyIsOpen(false)
-    setIsActive(false)
+  const closeDivCart = () => setTrolleyIsOpen(false);
+  // Eliminar productos del carrito
+  const deleteProductCartList = (id) => {
+    const filterProductList = cartProducts.filter(product => product.id !== id);
+    setCartProducts(filterProductList);
   }
-
-  useEffect(() => {
-    const localStorageCart = localStorage.getItem("cart_products");
-    if (localStorageCart) setCartProducts(JSON.parse(localStorageCart))
-  })
-
-  useEffect(() => {
-    localStorage.setItem('cart_products', JSON.stringify(cartProducts));
-  }, [isActive])
-
+  // Calculo de los productos del carrito
   const totalProducts = cartProducts.reduce((a, b) => { return a + b.price }, 0);
-  useEffect(() => {
-    setTotalProductsCart(totalProducts);
-  }, [totalProducts])
+  useEffect(() => { }, [cartProducts])
 
-  console.log(totalProductsCart)
+  const makeOrder = () => {
+    navigate("/submit-order")
+  }
   return (
     <div className={trolleyIsOpen ? "trolley" : "trolley-remove"}>
       {/* Titulo */}
@@ -45,7 +39,7 @@ export const Trolley = ({ trolleyIsOpen, setTrolleyIsOpen }) => {
                 {product.price}€
               </p>
             </div>
-            <p>x</p>
+            <p onClick={() => deleteProductCartList(product.id)}>x</p>
           </div>
         ))
       }
@@ -75,7 +69,7 @@ export const Trolley = ({ trolleyIsOpen, setTrolleyIsOpen }) => {
                     : <p>{totalProducts.toFixed(2)}€</p>
                 }
               </div>
-              <button>Realizar Pedido</button>
+              <button onClick={makeOrder}>Realizar Pedido</button>
             </div>
           )
       }

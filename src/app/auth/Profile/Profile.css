@@ -1,4 +1,10 @@
 /* Encabezado del perfil del usuario */
+.profile-user{
+    max-width: 120rem;
+    margin: 0 auto;
+    min-height: 100vh;
+
+}
 .profile-user h2 {
     padding: 5rem 2rem;
 }
@@ -7,7 +13,6 @@
 .profile-user-grid {
     display: grid;
     grid-template-columns: 20% 80%;
-    min-height: 100vh;
 }
 
 /* Barra de navegación del perfil del usuario */
@@ -44,7 +49,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 5rem;
-    padding: 5rem;
+    padding: 0rem 5rem;
 }
 
 .profile-user-data form>div {
