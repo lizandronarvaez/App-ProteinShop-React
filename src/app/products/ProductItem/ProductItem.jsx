@@ -22,13 +22,7 @@ export const ProductItem = ({ product, addProductListCart }) => {
                 <p>{product.description}</p>
             </div>
             <div className='product-add-cart'>
-                <p className='productAddCart' onClick={handleAddToCart}>Añadir</p>
-
-                {/* {
-                    !isCart
-                        : <p className='productIsCart'>En carrito</p>
-                } */}
-
+                <p className='productAddCart' onClick={handleAddToCart}>Añadir al carrito</p>
             </div>
         </div >
     )
