@@ -10,7 +10,6 @@ export const Main = () => {
       <div className='main-img'></div>
       <div className='components-main'>
         <Top_Sales />
-        <Brands />
         <Discounts />
         <InfoStore />
       </div>
