@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import "./RegisterForm.css";
 import { useNavigate, useLocation } from "react-router";
 import { springBootAxios } from '../../../api/axios';
+import Swal from 'sweetalert2/dist/sweetalert2.all';
 const formData = {
   fullname: "",
   email: "",
@@ -23,24 +24,32 @@ export const RegisterForm = () => {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
+    // !!TODO:validar los inputs del formulario
 
     try {
       const { data: { status, message } } = await springBootAxios.post("/clients", form)
       if (status == 200) {
-        alert(message)
+        Swal.fire({
+          title: "¡Cuenta creada correctamente!",
+          text: response.data,
+          icon: "sucess"
+        });
         navigate("/account")
         return;
       }
-      alert("Hubo un error")
-    } catch (error) {
-      console.log(error)
+    } catch ({ response }) {
+      Swal.fire({
+        title: "Hubo un error",
+        text: response.data,
+        icon: "error"
+      });
     }
   }
 
   useEffect(() => { if (data) setForm(({ ...form, email: data })); }, [data]);
   return (
     <div className='container form-register-client'>
-      <h2>Registrarse</h2>
+      <h1>Registrar mi cuenta</h1>
       <form onSubmit={handleSubmitForm}>
         <div className='form-client-box'>
           <label htmlFor="fullname"></label>

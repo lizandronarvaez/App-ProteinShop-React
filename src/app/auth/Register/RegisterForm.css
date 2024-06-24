@@ -1,5 +1,6 @@
 .form-register-client{
     text-align: center;
+    padding: 5rem;
 }
 .form-register-client form{
     padding: 1rem 5rem;
@@ -11,8 +12,12 @@
     padding: 1.5rem;
     margin-top: 1rem;
     outline: none;
+    border: 3px solid #d4d6d8;
 }
 
+.form-register-client form input:focus{
+    outline: auto;
+}
 .form-register-client form button{
     padding: 1rem 2rem;
     margin-top: 2rem;
