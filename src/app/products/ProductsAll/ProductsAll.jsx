@@ -3,19 +3,27 @@ import { ProductItem } from '../ProductItem/ProductItem'
 import { springBootAxios } from '../../../api/axios';
 import "./ProductsAll.css";
 import { SpinnerProducts } from '../Spinner/SpinnerProducts';
-import { CartTrolleyContext, useCart } from '../../context/CartTrolleyContext';
+import { useCart } from '../../context/CartTrolleyContext';
+import Swal from "sweetalert2/dist/sweetalert2.all";
 export const ProductsAll = ({ categories }) => {
 
     const { cartProducts, setCartProducts } = useCart();
     const [dataProducts, setDataProducts] = useState([]);
-    const [productListCart, setProductListCart] = useState([]);
+
+    // const [productListCart, setProductListCart] = useState([]);
     const getDataDB = async () => {
         const { data } = await springBootAxios.get("/products");
         setDataProducts(data)
     }
-    const addProductCartList = (product_data) => setCartProducts([...cartProducts, product_data]);
-    useEffect(() => { getDataDB(); }, [productListCart])
-
+    const addProductCartList = (product_data) => {
+        const isProductInCart = cartProducts.some(item => item.id === product_data.id);
+        if (isProductInCart) {
+            Swal.fire("El producto ya esta añadido", "", "error")
+            return;
+        }
+        setCartProducts([...cartProducts, product_data])
+    };
+    useEffect(() => { getDataDB(); }, [])
     return (
         <>
             {
@@ -45,8 +53,8 @@ export const ProductsAll = ({ categories }) => {
 
                                         dataProducts.filter(product => (
                                             categories.includes(product.category.name)
-                                        )).map((product, i) => (
-                                            <ProductItem key={i} product={product} />
+                                        )).map((products, i) => (
+                                            <ProductItem addProductListCart={addProductCartList} product={products} checkedCategories={categories} key={products.id} />
 
                                         )))
                                         : dataProducts.map((products, i) => (
