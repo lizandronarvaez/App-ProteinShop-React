@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
-import { Register } from '../Register/Register';
 import { springBootAxios } from '../../../api/axios';
 import Swal from "sweetalert2/dist/sweetalert2.all";
-const formValues = {
-    email: "",
-    password: ""
-}
+const formValues = { email: "", password: "" }
 export const Login = () => {
 
     const navigate = useNavigate();
@@ -25,14 +21,27 @@ export const Login = () => {
             });
             return;
         }
-        // Inicio de sesion
-        const { data: { token, client, message, status } } = await springBootAxios.post("/clients/login", formData)
-        localStorage.setItem("token", token)
-        localStorage.setItem("cliente", JSON.stringify(client))
 
-        if (status === 200) {
-            Swal.fire({ title: message, timer: 1500 });
-            navigate("/profile/user")
+        if(!formData.password){
+            Swal.fire({
+                title: "Introduce una contraseña válida",
+                text: "",
+                icon: "error"
+            });
+            return;
+        }
+
+        try {
+            // Inicio de sesion
+            const { data: { token, client, message, status } } = await springBootAxios.post("/clients/login", formData)
+            localStorage.setItem("token", token)
+            localStorage.setItem("cliente", JSON.stringify(client))
+            if (status === 200) {
+                Swal.fire({ title: message, timer: 1500 });
+                navigate("/")
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -40,7 +49,7 @@ export const Login = () => {
         <div className='container'>
             <div className='form'>
                 <form className='form-login' onSubmit={onSumbitFormData}>
-                    <h2>Login</h2>
+                    <h2>Conectarme a mi cuenta</h2>
                     <div className='form-login-box'>
                         <label htmlFor="email"></label>
                         <input type="email" name="email" placeholder='Correo eléctronico' onChange={onInputChange} value={formData.email} />
