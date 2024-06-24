@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router";
 import "./Register.css";
+import Swal from "sweetalert2/dist/sweetalert2.all";
+
 export const Register = () => {
 
   const navigate = useNavigate();
@@ -12,7 +14,12 @@ export const Register = () => {
 
   const handleConfirmForm = () => {
     if (!form.email.toLowerCase().includes("@")) {
-      alert("Introduce un correo válido para continuar")
+      Swal.fire({
+        title: "Introduce un email válido para continuar",
+        text: "",
+        icon: "error"
+    });
+    return;
       return;
     }
     navigate("/account/form-register", { state: { data: form.email } })
@@ -20,7 +27,7 @@ export const Register = () => {
   return (
     <>
       <div className='form-register'>
-        <h2>Registrarse</h2>
+        <h2>Registrar mi cuenta</h2>
         <div className='form-register-box'>
           <label htmlFor="email"></label>
           <input type="email"
