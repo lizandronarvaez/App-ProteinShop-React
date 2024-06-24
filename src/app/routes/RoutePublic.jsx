@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { ProductsList } from '../products/ProductsList'
 import { Login } from '../auth/Login/Login'
 import { Main } from '../components/main/Main'
@@ -9,13 +9,12 @@ import { OrderProducts } from '../order/OrderProducts';
 export const RoutePublic = ({ elements }) => {
   return (
     <Routes>
-      <Route exact path='/products' element={<ProductsList />} />
-      <Route exact path='/submit-order' element={<OrderProducts />} />
-      <Route exact path='/account' element={<Auth />} />
-      <Route exact path='/account/form-register' element={<RegisterForm />} />
+      <Route path='/products' element={<ProductsList />} />
+      <Route path='/submit-order' element={<OrderProducts />} />
+      <Route path='/account' element={<Auth />} />
+      <Route path='/account/form-register' element={<RegisterForm />} />
 
-      <Route exact path='/' element={<Main />} />
-
+      <Route path='/' element={<Main />} />
     </Routes>
   )
 }
