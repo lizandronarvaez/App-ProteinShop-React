@@ -6,6 +6,7 @@ import buttonLogout from "../../../../../public/svg/userLogout.svg";
 import account from "../../../../../public/svg/account.svg";
 import cart from "../../../../../public/svg/cart.svg";
 import { useCart } from '../../../context/CartTrolleyContext';
+import Swal from "sweetalert2/dist/sweetalert2.all";
 
 export const Nav_Account_Cart = () => {
     const navigate = useNavigate();
@@ -13,12 +14,26 @@ export const Nav_Account_Cart = () => {
     const [trolleyIsOpen, setTrolleyIsOpen] = useState(false);
     const { cartProducts } = useCart();
     const logoutAccount = () => {
-        //Limpiar el localStorage
-        localStorage.clear();
-        // Redireccionamos a la pagina principal
-        navigate("/", { replace: true })
+        Swal.fire({
+            title: "Salir de mi cuenta?",
+            text: "",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Salir",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                //Limpiar el localStorage
+                localStorage.clear();
+                // Redireccionamos a la pagina principal
+                navigate("/", { replace: true })
+            }
+        });
     }
-    useEffect(() => { }, [trolleyIsOpen, cartProducts])
+
+    useEffect(() => { }, [trolleyIsOpen, cartProducts, user])
     return (
         <>
             <div className='login-checkout'>
@@ -47,7 +62,6 @@ export const Nav_Account_Cart = () => {
                 </Link>
             </div>
             <Trolley trolleyIsOpen={trolleyIsOpen} setTrolleyIsOpen={setTrolleyIsOpen} />
-            {/* //todo:CREAR LOGOUT DE USUARIO PARA BORRAR LOS DATOS DEL LOCAL STORAGE */}
         </>
     )
 }
