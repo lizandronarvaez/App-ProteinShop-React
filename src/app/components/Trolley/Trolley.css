@@ -4,9 +4,10 @@
     right: 0;
     top: 0;
     bottom: 0;
-    width: 40rem;
+    width: 50rem;
     overflow-y: scroll;
     height: auto;
+    z-index: 1;
 }
 
 .trolley-remove {
@@ -26,7 +27,7 @@
     font-size: 3rem;
     margin: 0;
     display: flex;
-    align-items: center; 
+    align-items: center;
 }
 
 .trolley .title {
@@ -59,33 +60,44 @@
 
 .trolley_products .trolley_product_item .product_img_price {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: end;
 }
 
+.trolley_product_item .product_img_price input {
+    width: 5rem;
+    padding: .2rem 1rem;
+}
+
 .trolley_products p {
+    font-size: 1.8rem;
+}
+
+.trolley_products p:hover {
     cursor: pointer;
 }
 
+.trolley_total {
+    padding: 0 2rem;
+}
 
 .trolley_total div {
     display: flex;
     justify-content: space-between;
-    padding: 0 2rem;
 }
+
 
 .trolley_total div>p {
     font-weight: 700;
 }
 
 .trolley_total button {
-    display: flex;
-    margin: 0 auto;
+    width: 100%;
     background-color: #1c81ee;
     color: white;
     padding: 1rem 2rem;
     border: none;
-    border-radius: .5rem;
+    border-radius: .2rem;
     cursor: pointer;
 }
 
@@ -95,6 +107,6 @@
 
 /* Carrito vacio */
 
-.trolley_out{
+.trolley_out {
     text-align: center;
 }
