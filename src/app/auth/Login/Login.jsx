@@ -8,8 +8,12 @@ export const Login = () => {
 
     const navigate = useNavigate();
     const [formData, setFormData] = useState(formValues);
-
-    const onInputChange = ({ target: { value, name } }) => setFormData({ ...formData, [name]: value });
+    const onInputChange = ({ target: { value, name } }) => {
+        if (name === "email") {
+            value = value.toLowerCase().trim();
+        }
+        setFormData({ ...formData, [name]: value })
+    };
 
     const onSumbitFormData = async (e) => {
         e.preventDefault();
@@ -22,7 +26,7 @@ export const Login = () => {
             return;
         }
 
-        if(!formData.password){
+        if (!formData.password) {
             Swal.fire({
                 title: "Introduce una contraseña válida",
                 text: "",
@@ -40,8 +44,12 @@ export const Login = () => {
                 Swal.fire({ title: message, timer: 1500 });
                 navigate("/")
             }
-        } catch (error) {
-            console.log(error)
+        } catch ({ response: { data } }) {
+            Swal.fire({
+                title: "Email o password incorrectos" || data,
+                text: "",
+                icon: "error"
+            });
         }
     }
 

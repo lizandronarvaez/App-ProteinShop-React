@@ -9,6 +9,10 @@ export const Register = () => {
   const [form, setForm] = useState({ email: "" })
   // TODO: Validar que el correo es válido para seguir a la pagina de registro
   const handleValidEmailInput = ({ target: { name, value } }) => {
+    
+    if (name === "email") {
+      value = value.toLowerCase().trim();
+    }
     setForm({ ...form, [name]: value })
   }
 
@@ -18,8 +22,8 @@ export const Register = () => {
         title: "Introduce un email válido para continuar",
         text: "",
         icon: "error"
-    });
-    return;
+      });
+      return;
       return;
     }
     navigate("/account/form-register", { state: { data: form.email } })
