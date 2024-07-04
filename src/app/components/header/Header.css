@@ -1,16 +1,30 @@
-.header{
+.header {
     background-color: #6b97c6;
 }
 
-.header-info{
+.header-info {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    padding: 0 1rem;
     margin: 0 auto;
 }
 
-.header-info p{
-    font-size: 1.3rem;
+.header-info p {
+    font-size: 1rem;
     color: #ffffff;
     padding-right: 1rem;
-    margin: 1rem 0;
+    text-align: center;
+}
+
+@media (min-width: 992px) {
+    .header-info {
+        justify-content: space-around;
+        margin: 0 auto;
+    }
+
+    .header-info p {
+        font-size: 1.6rem;
+        padding: .5rem;
+        margin: 1rem 0;
+    }
 }
