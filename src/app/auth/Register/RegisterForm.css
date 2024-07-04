@@ -1,11 +1,13 @@
 .form-register-client{
     text-align: center;
-    padding: 5rem;
+    padding: 1rem;
 }
 .form-register-client form{
-    padding: 1rem 5rem;
-    max-width: 80rem;
     margin: 0 auto;
+}
+
+.form-register-client h1{
+    font-size: 2rem;
 }
 .form-register-client form input{
     width: 100%;
@@ -13,6 +15,7 @@
     margin-top: 1rem;
     outline: none;
     border: 3px solid #d4d6d8;
+    border-radius: .5rem;
 }
 
 .form-register-client form input:focus{
@@ -29,5 +32,22 @@
     font-weight: 700;
     border-radius: .5rem;
     cursor: pointer;
+}
+
+
+@media (min-width: 992px){
+
+    .form-register-client{
+        padding: 5rem;
+    }
+
+    .form-register-client h1{
+        font-size: normal;
+    }
+    .form-register-client form{
+        padding: 1rem 5rem;
+        max-width: 80rem;
+        margin: 0 auto;
+    }
 }
 

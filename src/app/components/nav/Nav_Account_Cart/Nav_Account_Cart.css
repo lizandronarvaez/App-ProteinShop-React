@@ -1,6 +1,6 @@
 .login-checkout {
     display: flex;
-    align-items: flex-end;
+    justify-content: space-between;
     color: #000;
 }
 
@@ -26,4 +26,11 @@
     font-weight: 600;
     border-radius: 100%;
     padding: .3rem .7rem;
+}
+
+@media (min-width: 992px){
+    .login-checkout {
+        display: flex;
+        align-items: flex-end;
+    }
 }
