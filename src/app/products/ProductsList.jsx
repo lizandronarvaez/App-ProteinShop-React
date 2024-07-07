@@ -3,6 +3,7 @@ import "./ProductsList.css";
 import { ProductFilter } from './ProductFilter/ProductFilter';
 import { ProductsAll } from './ProductsAll/ProductsAll';
 import { springBootAxios } from '../../api/axios';
+import { SpinnerCategory } from './Spinner/SpinnerCategory';
 export const ProductsList = () => {
 
     const [categories, setCategories] = useState([]);
@@ -21,13 +22,20 @@ export const ProductsList = () => {
                 <div className='grid-products'>
                     {/* Cajas de filtros de productos */}
                     <div className='filter-products'>
-                        <h3>Filtrar</h3>
+                        <h3>Filtros</h3>
                         <div className='filter-products-list'>
-                            <ProductFilter nameFilter={"Categorías"} data={categories} onCategoriesChange={handleSelectedCategoriesChange} />
+                            {
+                                !categories.length ? (
+                                    <SpinnerCategory />
+                                ) : (
+
+                                    <ProductFilter nameFilter={"Categorías"} data={categories} onCategoriesChange={handleSelectedCategoriesChange} />
+                                )
+                            }
                         </div>
                     </div>
                     {/* LISTA CON TODOS LOS PRODUCTOS */}
-                    <ProductsAll categories={selectedCategories}/>
+                    <ProductsAll categories={selectedCategories} />
                 </div>
             </div>
         </>
