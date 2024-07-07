@@ -26,13 +26,14 @@
 .product-cart p {
     margin: 0;
     font-size: 1.6rem;
-    cursor: pointer;
     padding: 1rem 1.5rem;
     background-color:rgb(64, 108, 231) ;
     color: white;
     border-radius: .5rem;
 }
-
+.product-cart p:hover{
+    cursor: pointer;
+}
 .product-cart input {
     width: 10rem;
     padding: 1rem ;
