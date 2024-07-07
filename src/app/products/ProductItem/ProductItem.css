@@ -3,6 +3,10 @@
     text-transform: uppercase;
 }
 
+.product-item:not(:first-child) {
+    margin-top: 5rem;
+}
+
 .product-item img {
     width: 10rem;
 }
@@ -16,12 +20,14 @@
 }
 
 .product-item-info p:first-of-type {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    font-weight: 600;
     margin: 1rem 0;
 }
 
 .product-item-description p {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
 }
 
 .product-item-info p {
@@ -42,4 +48,17 @@
 .product-add-cart .productAddCart:hover {
     cursor: pointer;
     background-color: rgb(49, 97, 228);
+}
+
+
+@media (min-width: 992px){
+    .product-item-info p:first-of-type {
+        font-size: 1.3rem;
+        font-weight: 400;
+    }
+    .product-item-description p {
+        font-size: 1.3rem;
+        font-weight: 400;
+    }
+    
 }
