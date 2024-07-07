@@ -12,10 +12,9 @@ export const Profile = () => {
     const { logged } = useContext(AuthContext);
     const navigate = useNavigate();
     useEffect(() => {
-        if (!logged) {
-            navigate("/account")
-        }
+        if (!logged) navigate("/account");
     }, [logged, navigate, user])
+
     if (!logged) return null;
 
     return (

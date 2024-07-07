@@ -12,7 +12,6 @@
 /* Contenedor principal del perfil del usuario */
 .profile-user-grid {
     display: grid;
-    grid-template-columns: 20% 80%;
 }
 
 /* Barra de navegación del perfil del usuario */
@@ -46,15 +45,14 @@
 
 /* Formulario de datos del perfil del usuario */
 .profile-user-data form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5rem;
-    padding: 0rem 5rem;
+    margin: 5rem 0;
+    padding: 0rem 2rem;
 }
 
 .profile-user-data form>div {
     display: flex;
     flex-direction: column;
+    margin-top: 3rem;
 }
 
 .profile-user-data form>div:last-of-type {
@@ -89,4 +87,18 @@
     border: none;
     color: white;
     font-weight: 600;
+}
+
+@media (min-width: 992px){
+    .profile-user-grid {
+        display: grid;
+        grid-template-columns: 20% 80%;
+    }
+
+    .profile-user-data form {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5rem;
+        padding: 0rem 5rem;
+    }
 }
