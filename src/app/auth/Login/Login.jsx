@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { springBootAxios } from '../../../api/axios';
 import Swal from "sweetalert2/dist/sweetalert2.all";
+import { useContext } from 'react';
+import { AuthContext } from '../context/authContext';
 const formValues = { email: "", password: "" }
 export const Login = () => {
 
     const navigate = useNavigate();
     const [formData, setFormData] = useState(formValues);
+    const { loginUser } = useContext(AuthContext);
     const onInputChange = ({ target: { value, name } }) => {
         if (name === "email") {
             value = value.toLowerCase().trim();
@@ -38,11 +41,13 @@ export const Login = () => {
         try {
             // Inicio de sesion
             const { data: { token, client, message, status } } = await springBootAxios.post("/clients/login", formData)
-            localStorage.setItem("token", token)
-            localStorage.setItem("cliente", JSON.stringify(client))
+            localStorage.setItem("token", token);
+            localStorage.setItem("cliente", JSON.stringify(client));
+            // Realiza la accion por debajo 
+            loginUser(localStorage.getItem("token"));
             if (status === 200) {
                 Swal.fire({ title: message, timer: 1500 });
-                navigate("/")
+                navigate("/", { replace: true })
             }
         } catch ({ response: { data } }) {
             Swal.fire({
