@@ -19,10 +19,12 @@
     padding: 0;
 }
 
-.footer-box div ul>li {
+.footer-box div ul>li:hover {
    cursor: pointer;
 }
-
+.footer-box div ul>li a{
+    text-decoration: none;
+}
 .footer-box h3 {
     margin: 3rem auto 0 auto;
     padding-bottom: 1rem;
