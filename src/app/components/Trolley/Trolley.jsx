@@ -7,8 +7,6 @@ export const Trolley = ({ trolleyIsOpen, setTrolleyIsOpen }) => {
   const navigate = useNavigate();
 
   const { cartProducts, setCartProducts } = useCart();
-  // const [totalProductsCart, setTotalProductsCart] = useState(0);
-
   const closeDivCart = () => setTrolleyIsOpen(false);
   const deleteProductCartList = (id) => {
     const filterProductList = cartProducts.filter(product => product.id !== id);
@@ -16,14 +14,14 @@ export const Trolley = ({ trolleyIsOpen, setTrolleyIsOpen }) => {
   }
 
   const totalProducts = cartProducts.reduce((a, b) => { return a + b.price }, 0);
-  
+
   const makeOrder = () => {
-    localStorage.setItem("cart", JSON.stringify(cartProducts))
+    closeDivCart();
     navigate("/submit-order")
   }
-  
+
   useEffect(() => { }, [cartProducts])
-  
+
   return (
     <div className={trolleyIsOpen ? "trolley" : "trolley-remove"}>
       {/* Titulo */}
