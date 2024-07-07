@@ -3,6 +3,13 @@
 }
 .grid-products {
     display: grid;
-    grid-template-columns: 20% auto;
     gap: 5rem;
+}
+
+
+@media (min-width: 992px){
+    .grid-products {
+        display: grid;
+        grid-template-columns: 20% auto;
+    }
 }
