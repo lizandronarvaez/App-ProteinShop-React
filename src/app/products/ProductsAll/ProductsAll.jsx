@@ -10,7 +10,6 @@ export const ProductsAll = ({ categories }) => {
     const { cartProducts, setCartProducts } = useCart();
     const [dataProducts, setDataProducts] = useState([]);
 
-    // const [productListCart, setProductListCart] = useState([]);
     const getDataDB = async () => {
         const { data } = await springBootAxios.get("/products");
         setDataProducts(data)
@@ -21,6 +20,7 @@ export const ProductsAll = ({ categories }) => {
             Swal.fire("El producto ya esta añadido", "", "error")
             return;
         }
+        Swal.fire("Agregado a carrito", "", "success")
         setCartProducts([...cartProducts, product_data])
     };
     useEffect(() => { getDataDB(); }, [])
