@@ -6,21 +6,29 @@
 
 .login-checkout a {
     margin: 0 1rem;
-    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: flex-end;
 }
 
-.login-checkout a:first-child{
+.login-checkout a:hover,
+.login-checkout img:hover {
+    cursor: pointer;
+}
+
+.login-checkout .logout{
+    width: 3rem;
+}
+.login-checkout a:first-child {
     width: 20rem;
 }
-.login-checkout .user-authenticated{
+
+.login-checkout .user-authenticated {
     text-transform: capitalize;
     font-size: 1.4rem;
 }
 
-.products_length_cart{
+.products_length_cart {
     background-color: red;
     color: #fff;
     font-weight: 600;
@@ -28,7 +36,7 @@
     padding: .3rem .7rem;
 }
 
-@media (min-width: 992px){
+@media (min-width: 992px) {
     .login-checkout {
         display: flex;
         align-items: flex-end;
