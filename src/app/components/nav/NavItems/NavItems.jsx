@@ -10,8 +10,6 @@ export const NavItems = () => {
   const toggleClass = () => {
     if (window.innerWidth < 768) {
       setToggle(!toggle)
-    }else{
-      setToggle(false)
     }
   }
 
