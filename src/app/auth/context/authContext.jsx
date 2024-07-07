@@ -1,14 +1,15 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer, useState } from "react";
 import { authReducer } from "./authReducer";
 import { types } from "../types/types";
 
+// Crear el contexto
 export const AuthContext = createContext();
 
+// estado inicial
 const initialState = () => {
     const token = localStorage.getItem("token");
     return {
-        logged: !!token,
-        token
+        logged: !!token, token
     };
 };
 
