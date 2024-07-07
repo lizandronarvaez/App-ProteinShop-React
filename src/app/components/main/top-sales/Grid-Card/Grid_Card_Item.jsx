@@ -1,6 +1,9 @@
 import React from 'react'
 import "./Grid_Card_Item.css";
-export const Grid_Card_Item = ({ productsTop }) => {
+export const Grid_Card_Item = ({ productsTop, addProductCartList }) => {
+    const handleAddToCart = (product) => {
+        addProductCartList(product)
+    }
     return (
         productsTop.map((product, i) => (
             <div className='grid-card' key={i}>
@@ -12,7 +15,7 @@ export const Grid_Card_Item = ({ productsTop }) => {
                     <div className='product-info-price'>{product.price}€</div>
                 </div>
                 <div className='product-cart'>
-                    <p>Añadir a carrito</p>
+                    <p onClick={() => handleAddToCart(product)}>Añadir a carrito</p>
                 </div>
             </div>
         ))
