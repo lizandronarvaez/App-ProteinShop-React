@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import "./OrderProducts.css";
 import { useCart } from '../context/CartTrolleyContext';
 import { CartIsOut } from './CartIsOut';
 import { springBootAxios } from '../../api/axios';
 import Swal from 'sweetalert2/dist/sweetalert2.all';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../auth/context/authContext";
 
 export const OrderProducts = () => {
   const { cartProducts } = useCart();
   const navigate = useNavigate();
-  const { id, email, fullname } = JSON.parse(localStorage.getItem("cliente"));
+  const clientStorage = JSON.parse(localStorage.getItem("cliente"));
   const [quantities, setQuantities] = useState({});
+  const { logged } = useContext(AuthContext);
 
   const totalOrder = cartProducts.reduce((total, { id, price }) => {
     const quantity = quantities[id] || 1;
@@ -23,12 +25,11 @@ export const OrderProducts = () => {
       [productId]: Number(value)
     });
   };
-
-  const client = { id, email, fullname };
-  const orderProducts = cartProducts.map(({ id, fullname, price }) => {
-    const quantity = quantities[id] || 1
+  const client = { id: clientStorage?.id, email: clientStorage?.email, fullname: clientStorage?.fullname };
+  const orderProducts = cartProducts.map((product) => {
+    const quantity = quantities[product?.id] || 1
     return {
-      id, fullname, price, quantity
+      id: product?.id, fullname: product?.fullname, price: product?.price, quantity
     }
   });
 
@@ -37,25 +38,50 @@ export const OrderProducts = () => {
     order: orderProducts,
     total: totalOrder.toFixed(2)
   }
+
+  const paymentOrder = () => {
+    //TODO!!: Implementar el pago con stripe o paypal
+    const urlPayment = "https://buy.stripe.com/test_5kAg0K4ieelR2DC288";
+    window.open(urlPayment, "_blank");
+    return {
+      status: "hola"
+    }
+  }
   const onSubmitOrder = async (e) => {
     e.preventDefault();
+    if (!logged) {
+      await Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Para realizar la compra, debes acceder a tu cuenta",
+        showConfirmButton: false,
+        timer: 2000
+      });
 
-    try {
-      const { status } = await springBootAxios.post("/orders", orderClientSubmit)
-      if (status === 200) {
-        localStorage.removeItem("cart");
-        await Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Pedido realizado correctamente",
-          showConfirmButton: false,
-          timer: 2000
-        });
-        navigate("/", { replace: true })
-      }
-    } catch (error) {
-      Swal.fire("Hubo un error al crear el pedido", error.response, "error")
+      return;
     }
+
+    // TODO: Implementar stripe o cualquier api de terceros para pagos
+    const { status } = paymentOrder();
+    console.log(status)
+
+    // navigate("/checkout")
+    // try {
+    //   const { status } = await springBootAxios.post("/orders", orderClientSubmit)
+    //   if (status === 200) {
+    //     localStorage.removeItem("cart");
+    //     await Swal.fire({
+    //       position: "center",
+    //       icon: "success",
+    //       title: "Pedido realizado correctamente",
+    //       showConfirmButton: false,
+    //       timer: 2000
+    //     });
+    //     navigate("/", { replace: true })
+    //   }
+    // } catch (error) {
+    //   Swal.fire("Hubo un error al crear el pedido", error.response, "error")
+    // }
   }
 
   useEffect(() => {
@@ -107,7 +133,7 @@ export const OrderProducts = () => {
                 <div className="list-order-checkout">
                   <h2>Total: <span>{(totalOrder).toFixed(2)}€</span></h2>
                   <div className='check-total'>
-                    <button>Pagar</button>
+                    <button type='submit'>Pagar</button>
                   </div>
                 </div>
               </form>
