@@ -31,18 +31,13 @@ export const ProductFilter = ({ nameFilter, onCategoriesChange }) => {
             <h3>{nameFilter}</h3>
             <div className='filter-product-checkbox'>
                 {
-                    !dataCategories.length ? (
-                        <SpinnerCategory />
-                ):(
-
-                dataCategories.map(({und, name}, i) => (
-                <div className='product-checkbox-type' key={i}>
-                    <p>({und})</p>
-                    <label htmlFor="tipo">{name}</label>
-                    <input type="checkbox" name="tipo" value={name} onChange={onCategoriesValues} />
-                </div>
-                )
-                ))
+                    dataCategories.map(({ und, name }, i) => (
+                        <div className='product-checkbox-type' key={i}>
+                            <p>({und})</p>
+                            <label htmlFor="tipo">{name}</label>
+                            <input type="checkbox" name="tipo" value={name} onChange={onCategoriesValues} />
+                        </div>
+                    ))
                 }
             </div>
         </div>
