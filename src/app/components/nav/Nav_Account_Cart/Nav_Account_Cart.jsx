@@ -7,12 +7,14 @@ import account from "../../../../../public/svg/account.svg";
 import cart from "../../../../../public/svg/cart.svg";
 import { useCart } from '../../../context/CartTrolleyContext';
 import Swal from "sweetalert2/dist/sweetalert2.all";
-
+import { useContext } from 'react';
+import { AuthContext } from '../../../auth/context/authContext';
 export const Nav_Account_Cart = () => {
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("cliente"));
     const [trolleyIsOpen, setTrolleyIsOpen] = useState(false);
     const { cartProducts } = useCart();
+    const { logoutUser } = useContext(AuthContext)
     const logoutAccount = () => {
         Swal.fire({
             title: "Salir de mi cuenta?",
@@ -26,7 +28,7 @@ export const Nav_Account_Cart = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 //Limpiar el localStorage
-                localStorage.clear();
+                logoutUser();
                 // Redireccionamos a la pagina principal
                 navigate("/", { replace: true })
             }
@@ -38,27 +40,31 @@ export const Nav_Account_Cart = () => {
         <>
             <div className='login-checkout'>
                 {
-                    user ?
-                        <Link to="/profile/user" className='user-authenticated'>
-                            {user?.fullname ? user?.fullname : "Cuenta"}
-                            <img src={account} alt={account} />
-                            {
-                                user?.fullname ?
-                                    <img src={buttonLogout} alt={buttonLogout} onClick={logoutAccount} />
-                                    : null
-                            }
-                        </Link>
+                    user?.fullname ?
+                        (
+                            <>
+                                <Link to="/profile/user" className='user-authenticated'>
+                                    {user?.fullname}
+                                    <img src={account} alt={account} />
+                                </Link>
+                                <img
+                                    src={buttonLogout}
+                                    alt={buttonLogout}
+                                    onClick={logoutAccount}
+                                    className='logout'
+                                />
+                            </>
+                        )
                         :
                         <Link to="/account" >
-                            {!user?.fullname ? "Cuenta" : user.fullname}
+                            Cuenta
                             <img src={account} alt={account} />
                         </Link>
                 }
                 {/* Carrito de compras */}
                 <Link onClick={() => setTrolleyIsOpen(true)}>Carrito
                     <img src={cart} alt={cart} />
-                    <p className='products_length_cart'>{cartProducts.length}
-                    </p>
+                    <p className='products_length_cart'>{cartProducts.length}</p>
                 </Link>
             </div>
             <Trolley trolleyIsOpen={trolleyIsOpen} setTrolleyIsOpen={setTrolleyIsOpen} />
