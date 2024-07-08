@@ -7,6 +7,12 @@ export const NavItems = () => {
   const myRef = useRef();
 
   // TODO!!SOLUCIONAR EL TEMA DE MENU HAMBURGER PARA LOS ENLACES
+
+  const handleResize = () => {
+    if (window.innerWidth >= 768) {
+      setToggle(true);
+    }
+  };
   const toggleClass = () => {
     if (window.innerWidth < 768) {
       setToggle(!toggle)
@@ -16,7 +22,12 @@ export const NavItems = () => {
   useEffect(() => {
     toggleClass();
   }, [])
-  console.log(toggle)
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   return (
     <>
       <nav className='nav-items'>
@@ -25,14 +36,15 @@ export const NavItems = () => {
         </div>
         <div className='items-menu'>
           {
-            toggle ? (
+            toggle &&
+            <>
               <ul>
-                <li><Link to="/products" onClick={() => setToggle(false)}>Productos</Link></li>
+                <li><Link to="/products" onClick={toggleClass}>Productos</Link></li>
                 <li>Accesorios</li>
                 <li>Top Ventas</li>
                 <li>Promociones</li>
               </ul>
-            ) : null
+            </>
           }
 
         </div>
