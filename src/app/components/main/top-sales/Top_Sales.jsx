@@ -8,20 +8,32 @@ import Swal from "sweetalert2/dist/sweetalert2.all";
 
 export const Top_Sales = () => {
     const [productsDB, setProductsDB] = useState([]);
-    const {cartProducts,setCartProducts}=useCart();
+    const { cartProducts, setCartProducts } = useCart();
     const getDataDB = async () => {
         const { data } = await springBootAxios.get("/products")
         const filterProductsTop = data.filter(product => product.price >= 10 && product.price <= 50)
         setProductsDB(filterProductsTop)
     }
 
-    const addProductCartList=(product)=>{
+    const addProductCartList = (product) => {
         const isProductInCart = cartProducts.some(item => item.id === product.id);
         if (isProductInCart) {
-            Swal.fire("El producto ya está en tu carrito", "", "error")
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Ya está en tu carrito",
+                showConfirmButton: false,
+                timer: 1200
+            });
             return;
         }
-        Swal.fire("Agregado a carrito", "", "success")
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Agregado a carrito",
+            showConfirmButton: false,
+            timer: 1200
+        });
         setCartProducts([...cartProducts, product])
     }
     useEffect(() => { getDataDB(); }, [])
@@ -30,8 +42,8 @@ export const Top_Sales = () => {
             <h2>TOP Productos Ventas</h2>
             <div className='grid'>
                 {
-                    !productsDB.length ?
-                        (
+                    !productsDB.length
+                        ? (
                             <>
                                 <SpinnerProducts />
                                 <SpinnerProducts />
