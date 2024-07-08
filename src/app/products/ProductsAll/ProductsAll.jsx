@@ -17,10 +17,22 @@ export const ProductsAll = ({ categories }) => {
     const addProductCartList = (product_data) => {
         const isProductInCart = cartProducts.some(item => item.id === product_data.id);
         if (isProductInCart) {
-            Swal.fire("El producto ya esta añadido", "", "error")
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Ya está en tu carrito",
+                showConfirmButton: false,
+                timer: 1200
+            });
             return;
         }
-        Swal.fire("Agregado a carrito", "", "success")
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Agregado a carrito",
+            showConfirmButton: false,
+            timer: 1200
+        });
         setCartProducts([...cartProducts, product_data])
     };
     useEffect(() => { getDataDB(); }, [])
