@@ -20,6 +20,12 @@ export const Trolley = ({ trolleyIsOpen, setTrolleyIsOpen }) => {
     navigate("/submit-order")
   }
 
+  const clearMarkeOrder = () => {
+    setCartProducts([]);
+    closeDivCart();
+    navigate("/products")
+
+  }
   useEffect(() => { }, [cartProducts])
 
   return (
@@ -59,20 +65,18 @@ export const Trolley = ({ trolleyIsOpen, setTrolleyIsOpen }) => {
             <div className='trolley_total'>
               <div>
                 <p>Envio:</p>
-                {totalProducts.toFixed(2) > 30 ? <p>Gratuito</p> : <p>5,99€</p>}
+                {totalProducts.toFixed(2) > 20 ? <p>Gratuito</p> : <p>5,99€</p>}
               </div>
               <div>
                 <p>Total</p>
                 {
-                  totalProducts.toFixed(2) < 30 && totalProducts
-                    ?
-                    (
-                      <p>{(totalProducts + 5.99).toFixed(2)}€</p>
-                    )
+                  totalProducts.toFixed(2) < 20 && totalProducts
+                    ? <p>{(totalProducts + 5.99).toFixed(2)}€</p>
                     : <p>{totalProducts.toFixed(2)}€</p>
                 }
               </div>
-              <button onClick={makeOrder}>Realizar Pedido</button>
+              <button type='button' onClick={makeOrder}>Realizar Pedido</button>
+              <button type='button' onClick={clearMarkeOrder}>Vaciar carrito</button>
             </div>
           )
       }
