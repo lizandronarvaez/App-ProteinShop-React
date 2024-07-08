@@ -1,6 +1,7 @@
 .login-checkout {
     display: flex;
     justify-content: space-between;
+    align-items: end;
     color: #000;
 }
 
