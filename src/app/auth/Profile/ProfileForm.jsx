@@ -11,15 +11,15 @@ const formData = {
     country: "",
     postalcode: ""
 }
+
 export const ProfileForm = ({ user = {} }) => {
     const [updateClient, setUpdateClient] = useState(formData);
     const onChangeInput = ({ target: { name, value } }) => { setUpdateClient({ ...updateClient, [name]: value }) }
 
     const onSubmitForm = async (e) => {
         e.preventDefault();
-        const { id } = user;
         try {
-            const { data } = await springBootAxios.put(`/clients/${id}`, updateClient)
+            const { data } = await springBootAxios.put(`/clients/${user?.id}`, updateClient)
             Swal.fire({
                 title: "¡Datos actualizados!",
                 text: data.message,
@@ -47,6 +47,7 @@ export const ProfileForm = ({ user = {} }) => {
             });
         }
     }, [user])
+
     return (
         <>
 
