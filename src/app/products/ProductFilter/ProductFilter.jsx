@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import "./ProductFilter.css";
 import { springBootAxios } from '../../../api/axios';
-import { SpinnerCategory } from '../Spinner/SpinnerCategory';
-
+import FilterCategory from "../../../../public/svg/categoryFilter.svg";
 export const ProductFilter = ({ nameFilter, onCategoriesChange }) => {
 
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [dataCategories, setDataCategories] = useState([]);
+    const [toggleCategory, setToggleCategory] = useState(false);
+    const handleToggleCategory = () => setToggleCategory(!toggleCategory);
+
     const onCategoriesValues = ({ target: { value, checked } }) => {
         checked ?
             setSelectedCategories([...selectedCategories, value])
@@ -25,21 +27,36 @@ export const ProductFilter = ({ nameFilter, onCategoriesChange }) => {
         setDataCategories(updatedDataProducts);
     }
 
-    useEffect(() => { getDataDB(); onCategoriesChange(selectedCategories) }, [selectedCategories])
+    useEffect(() => {
+        getDataDB();
+        onCategoriesChange(selectedCategories);
+    }, [selectedCategories])
     return (
-        <div>
-            <h3>{nameFilter}</h3>
-            <div className='filter-product-checkbox'>
-                {
-                    dataCategories.map(({ und, name }, i) => (
-                        <div className='product-checkbox-type' key={i}>
-                            <p>({und})</p>
-                            <label htmlFor="tipo">{name}</label>
-                            <input type="checkbox" name="tipo" value={name} onChange={onCategoriesValues} />
-                        </div>
-                    ))
-                }
+        <>
+            <div className='head-filter-product'>
+                <h3>{nameFilter}</h3>
+                <img
+                    src={FilterCategory}
+                    alt={FilterCategory}
+                    onClick={handleToggleCategory}
+                />
             </div>
-        </div>
+            {
+                toggleCategory && (
+
+                    <div className='filter-product-checkbox'>
+                        {
+                            dataCategories.map(({ und, name }, i) => (
+                                <div className='product-checkbox-type' key={i}>
+                                    <p>({und})</p>
+                                    <label htmlFor="tipo">{name}</label>
+                                    <input type="checkbox" name="tipo" value={name} onChange={onCategoriesValues} />
+                                </div>
+                            ))
+                        }
+                    </div>
+                )
+            }
+        </>
     )
 }

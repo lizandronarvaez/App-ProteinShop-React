@@ -1,5 +1,11 @@
-.filter-products-list div h3 {
+.filter-products-list .head-filter-product {
+    display: flex;
     border-bottom: 1px solid grey;
+    justify-content: space-between;
+}
+
+.filter-products-list .head-filter-product img:hover {
+    cursor: pointer;
 }
 
 .filter-product-checkbox {
@@ -20,7 +26,7 @@
     align-items: center;
 }
 
-.product-checkbox-type label{
+.product-checkbox-type label {
     margin: 0 1rem;
     text-transform: capitalize;
 }
