@@ -20,21 +20,13 @@ export const Login = () => {
 
     const onSumbitFormData = async (e) => {
         e.preventDefault();
+
         if (!formData.email.toLowerCase().includes("@")) {
-            Swal.fire({
-                title: "El correo no es válido",
-                text: "Introduce un correo válido",
-                icon: "error"
-            });
+            Swal.fire({ title: "El correo no es válido", text: "Introduce un correo válido", icon: "error" });
             return;
         }
 
-        if (!formData.password) {
-            Swal.fire({
-                title: "Introduce una contraseña válida",
-                text: "",
-                icon: "error"
-            });
+        if (!formData.password) {Swal.fire({title: "Introduce una contraseña",text: "",icon: "error"});
             return;
         }
 
@@ -47,7 +39,7 @@ export const Login = () => {
             loginUser(localStorage.getItem("token"));
             if (status === 200) {
                 Swal.fire({ title: message, timer: 1500 });
-                navigate("/", { replace: true })
+                navigate("/profile/user", { replace: true })
             }
         } catch ({ response: { data } }) {
             Swal.fire({
