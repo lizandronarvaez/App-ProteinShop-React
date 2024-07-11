@@ -5,16 +5,17 @@ import { springBootAxios } from '../../../api/axios';
 import Swal from "sweetalert2/dist/sweetalert2.all";
 import { useContext } from 'react';
 import { AuthContext } from '../context/authContext';
+import { SpinnerLoading } from '../spinner/SpinnerLoading';
 const formValues = { email: "", password: "" }
 export const Login = () => {
 
     const navigate = useNavigate();
     const [formData, setFormData] = useState(formValues);
     const { loginUser } = useContext(AuthContext);
+    const [isLoading, setIsLoading] = useState(false);
+
     const onInputChange = ({ target: { value, name } }) => {
-        if (name === "email") {
-            value = value.toLowerCase().trim();
-        }
+        if (name === "email") value = value.toLowerCase().trim();
         setFormData({ ...formData, [name]: value })
     };
 
@@ -26,10 +27,11 @@ export const Login = () => {
             return;
         }
 
-        if (!formData.password) {Swal.fire({title: "Introduce una contraseña",text: "",icon: "error"});
+        if (!formData.password) {
+            Swal.fire({ title: "Introduce una contraseña", text: "", icon: "error" });
             return;
         }
-
+        setIsLoading(true);
         try {
             // Inicio de sesion
             const { data: { token, client, message, status } } = await springBootAxios.post("/clients/login", formData)
@@ -41,12 +43,15 @@ export const Login = () => {
                 Swal.fire({ title: message, timer: 1500 });
                 navigate("/profile/user", { replace: true })
             }
+            setIsLoading(true);
         } catch ({ response: { data } }) {
             Swal.fire({
                 title: "Email o password incorrectos" || data,
                 text: "",
                 icon: "error"
             });
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -57,14 +62,19 @@ export const Login = () => {
                     <h2>Conectarme a mi cuenta</h2>
                     <div className='form-login-box'>
                         <label htmlFor="email"></label>
-                        <input type="email" name="email" placeholder='Correo eléctronico' onChange={onInputChange} value={formData.email} />
+                        <input type="email" name="email" placeholder='Correo eléctronico' autoComplete='email' onChange={onInputChange} value={formData.email} />
                     </div>
                     <div className='form-login-box'>
                         <label htmlFor="password"></label>
-                        <input type="password" name="password" placeholder='Password' onChange={onInputChange} value={formData.password} />
+                        <input type="password" name="password" placeholder='Password' autoComplete='current-password' onChange={onInputChange} value={formData.password} />
                     </div>
                     <div className='form-login-box button-submit-login'>
-                        <button type="submit">Login</button>
+                        {
+                            isLoading
+                                ? <SpinnerLoading />
+                                : <button type="submit">Login</button>
+
+                        }
                     </div>
                 </form>
             </div>
