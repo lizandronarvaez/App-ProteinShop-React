@@ -1,19 +1,42 @@
 import React, { useState } from 'react'
 import "./FormDiscounts.css";
+import Swal from 'sweetalert2/dist/sweetalert2.all';
 
-const form = {
-    suscription: ""
-}
+const form = { suscription: "" }
 export const FormDiscounts = () => {
     const [dataForm, setDataForm] = useState(form);
 
-    const inputValueForm = ({ target: { name, value } }) => setDataForm({...dataForm,[name]: value});
-    
+    const inputValueForm = ({ target: { name, value } }) => setDataForm({ ...dataForm, [name]: value });
+
     const onSubmitForm = (e) => {
         e.preventDefault();
+        if (dataForm.suscription.length === 0) {
+            Swal.fire({
+                title: "Debes introducir un email válido",
+                icon: "error"
+            })
+            return;
+        }
+        Swal.fire({
+            title: "Desea suscribirse a promociones y descuentos?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Aceptar",
+            cancelButtonText: "Cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "¡Te haz suscrito a nuestras promociones!",
+                    text: "¡Recibirás en tu email, ofertas, descuentos y promociones sobre nuestros productos!",
+                    icon: "success"
+                });
+            }
+        });
 
         // todo:realizar logica para registrar cliente suscripto a promociones
-        console.log(dataForm)
+        // TODO:ENVIAR AL BACKEND!!
     }
     return (
         <div className='discounts-form'>

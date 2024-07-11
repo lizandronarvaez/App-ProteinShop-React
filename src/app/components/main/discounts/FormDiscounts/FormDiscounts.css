@@ -19,10 +19,16 @@
     cursor: pointer;
     margin-top: .5rem;
     width: 100%;
+    outline: none;
+}
+
+.discounts-form-box_submit button:focus {
+    outline: none;
+    background-color: #093168;
 }
 
 
-@media (min-width: 992px){
+@media (min-width: 992px) {
     .discounts-form form {
         margin-top: 3rem;
         display: flex;
