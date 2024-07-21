@@ -27,7 +27,7 @@
     .nav-form {
         display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: baseline;
         justify-content: space-between;
         width: 90%;
         padding: 3rem;

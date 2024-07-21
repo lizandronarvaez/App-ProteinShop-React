@@ -38,8 +38,13 @@
 }
 
 @media (min-width: 992px) {
+    
     .login-checkout {
         display: flex;
         align-items: flex-end;
+    }
+
+    .login-checkout a{
+        font-size: 2rem;
     }
 }
