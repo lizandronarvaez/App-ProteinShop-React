@@ -31,9 +31,10 @@
     font-size: 2rem;
     font-weight: 700;
     border-radius: .5rem;
+}
+.form-register-client form button:hover{
     cursor: pointer;
 }
-
 
 @media (min-width: 992px){
 

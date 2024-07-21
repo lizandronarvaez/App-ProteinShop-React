@@ -27,11 +27,11 @@ export const RegisterForm = () => {
     // !!TODO:validar los inputs del formulario
 
     try {
-      const { data: { status, message } } = await springBootAxios.post("/clients", form)
-      if (status == 200) {
+      const { data } = await springBootAxios.post("/clients", form)
+      if (data.status === 200) {
         Swal.fire({
-          title: "¡Cuenta creada correctamente!",
-          text: response.data,
+          title: "¡Tu cuenta se creó correctamente!",
+          text: "",
           icon: "sucess"
         });
         navigate("/account")
@@ -40,7 +40,7 @@ export const RegisterForm = () => {
     } catch ({ response }) {
       Swal.fire({
         title: "Hubo un error",
-        text: response.data,
+        text: response?.data,
         icon: "error"
       });
     }
