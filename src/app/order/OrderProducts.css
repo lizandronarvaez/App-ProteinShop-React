@@ -1,4 +1,3 @@
-
 .list-order-product {
     border: 1px solid #e1e3e4;
 }
@@ -8,24 +7,50 @@
     justify-content: space-around;
 }
 
-.head-products-list p{
+.head-products-list p {
     font-weight: 600;
 }
+
 .body-products-list {
     border-top: 1px solid #e1e3e4;
     width: 100%;
     text-align: center;
     padding: 2rem 0;
 }
+
 .body-products-list .product-list-item {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: end;
     padding: 0 .5rem;
 }
-.body-products-list .product-list-item:not(:first-child){
+
+.body-products-list .product-list-item div {
+    margin: 0 1rem;
+}
+
+.product-list-item .quantity-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.product-list-item .quantity-products .less,
+.product-list-item .quantity-products .more {
+    height: 3rem;
+    width: 4rem;
+    border: none;
+    font-size: 2.5rem;
+    background-color: #d8d7d7;
+}
+.product-list-item .quantity-products button:hover{
+    cursor: pointer;
+}
+
+
+.body-products-list .product-list-item:not(:first-child) {
     margin-top: 7rem;
 }
+
 .body-products-list .product-list-item img {
     max-width: 5rem;
 }
@@ -42,14 +67,17 @@
 
 .body-products-list input {
     height: 3rem;
-    width: 7rem;
+    width: 5rem;
     padding: 0 1rem;
+    text-align: center;
+    border: none;
+    font-size: 1.8rem;
 }
 
 .list-order-checkout {
     border: 1px solid #e1e3e4;
     max-height: 20rem;
-    padding: 3rem ;
+    padding: 3rem;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -77,10 +105,17 @@
     text-align: center;
 }
 
+@media (min-width: 568px) {
+    .product-list-item .quantity-products {
+        display: block;
+    }
+}
+
 @media (min-width: 992px) {
     .head-products-list {
         padding: 1rem 5rem;
     }
+
     .list-order {
         display: grid;
         grid-template-columns: 80% auto;
@@ -90,12 +125,24 @@
     .body-products-list .product-list-item div:first-child p {
         font-size: 1.8rem;
     }
-    .body-products-list .product-list-item:not(:first-child){
+
+    .body-products-list .product-list-item:not(:first-child) {
         margin-top: 5rem;
     }
+
     .body-products-list input {
-        height: 3rem;
-        width: 10rem;
+        height: 4rem;
+        width: 5rem;
         padding: 0 1.5rem;
+    }
+
+    .product-list-item .quantity-products {
+        display: block;
+    }
+
+    .product-list-item .quantity-products .less,
+    .product-list-item .quantity-products .more {
+        height: 4rem;
+        width: 5rem;
     }
 }
