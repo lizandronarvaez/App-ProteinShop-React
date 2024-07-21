@@ -8,36 +8,53 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../auth/context/authContext";
 
 export const OrderProducts = () => {
-  const { cartProducts } = useCart();
+  const { cartProducts, removeProduct } = useCart();
   const navigate = useNavigate();
   const clientStorage = JSON.parse(localStorage.getItem("cliente"));
   const [quantities, setQuantities] = useState({});
   const { logged } = useContext(AuthContext);
 
+  // 
   const totalOrder = cartProducts.reduce((total, { id, price }) => {
     const quantity = quantities[id] || 1;
     return total + price * quantity;
   }, 0);
 
-  const handleQuantityChange = (productId, { target: { name, value } }) => {
+  // 
+  const handleQuantityChange = (productId, newQuantity) => {
+    if (newQuantity < 1) {
+      Swal.fire({
+        title: "¿Eliminar producto del carrito?",
+        text: "",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Eliminar",
+        cancelButtonText: "Cancelar"
+      }).then((result) => { if (result.isConfirmed) removeProduct(productId); });
+      return;
+    }
     setQuantities({
       ...quantities,
-      [productId]: Number(value)
+      [productId]: newQuantity
     });
   };
+
+  // 
   const client = { id: clientStorage?.id, email: clientStorage?.email, fullname: clientStorage?.fullname };
   const orderProducts = cartProducts.map((product) => {
-    const quantity = quantities[product?.id] || 1
+    const quantity = quantities[product?.id] || 1;
     return {
       id: product?.id, fullname: product?.fullname, price: product?.price, quantity
-    }
+    };
   });
 
   const orderClientSubmit = {
     client,
     order: orderProducts,
     total: totalOrder.toFixed(2)
-  }
+  };
 
   const paymentOrder = () => {
     //TODO!!: Implementar el pago con stripe o paypal
@@ -45,8 +62,9 @@ export const OrderProducts = () => {
     window.open(urlPayment, "_blank");
     return {
       status: "hola"
-    }
-  }
+    };
+  };
+
   const onSubmitOrder = async (e) => {
     e.preventDefault();
     if (!logged) {
@@ -63,7 +81,7 @@ export const OrderProducts = () => {
 
     // TODO: Implementar stripe o cualquier api de terceros para pagos
     const { status } = paymentOrder();
-    console.log(status)
+    console.log(status);
 
     // navigate("/checkout")
     // try {
@@ -82,7 +100,7 @@ export const OrderProducts = () => {
     // } catch (error) {
     //   Swal.fire("Hubo un error al crear el pedido", error.response, "error")
     // }
-  }
+  };
 
   useEffect(() => {
     const initialQuantities = cartProducts.reduce((acc, { id }) => {
@@ -114,14 +132,21 @@ export const OrderProducts = () => {
                           <img src={imageProduct} alt={imageProduct} />
                           <p>{fullname}</p>
                         </div>
-                        <div>
+                        <div className='quantity-products'>
+                          <button type='button' className='less'
+                            onClick={() => handleQuantityChange(id, (quantities[id] || 1) - 1)}
+                          // disabled={quantities[id] <= 1}
+                          >-</button>
                           <input
-                            type="number"
+                            type="text"
                             name="quantity"
                             value={quantities[id] || 1}
                             min={1}
-                            onChange={(e) => handleQuantityChange(id, e)}
+                            readOnly
                           />
+                          <button type='button' className='more'
+                            onClick={() => handleQuantityChange(id, (quantities[id] || 1) + 1)}
+                          >+</button>
                         </div>
                         <div>
                           <p>{(price * (quantities[id] || 1)).toFixed(2)}€</p>
@@ -140,7 +165,6 @@ export const OrderProducts = () => {
             </>
           )
       }
-
     </div>
-  )
-}
+  );
+};

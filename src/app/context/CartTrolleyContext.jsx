@@ -8,12 +8,15 @@ export const CartTrolleyProvider = ({ children }) => {
         return savedCart ? JSON.parse(savedCart) : [];
     });
 
+    const removeProduct = (productId) => {
+        setCartProducts(cartProducts.filter(product => product.id !== productId));
+    }
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartProducts));
     }, [cartProducts]);
 
     return (
-        <CartTrolleyContext.Provider value={{ cartProducts, setCartProducts }}>
+        <CartTrolleyContext.Provider value={{ cartProducts, setCartProducts,removeProduct }}>
             {children}
         </CartTrolleyContext.Provider >
     )
