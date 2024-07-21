@@ -15,7 +15,7 @@ export const Grid_Card_Item = ({ productsTop, addProductCartList }) => {
                     <div className='product-info-price'>{product.price}€</div>
                 </div>
                 <div className='product-cart'>
-                    <p onClick={() => handleAddToCart(product)}>Añadir a carrito</p>
+                    <p onClick={() => handleAddToCart(product)}>Añadir</p>
                 </div>
             </div>
         ))
