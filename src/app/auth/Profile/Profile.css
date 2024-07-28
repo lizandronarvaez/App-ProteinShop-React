@@ -1,23 +1,18 @@
-/* Encabezado del perfil del usuario */
 .profile-user {
     max-width: 120rem;
     margin: 0 auto;
-    /* min-height: 100vh; */
 }
 
 .profile-user h2 {
     padding: 5rem 2rem;
 }
 
-/* Contenedor principal del perfil del usuario */
 .profile-user-grid {
     display: grid;
 }
 
-/* Barra de navegación del perfil del usuario */
 .profile-user-nav {
     width: 100%;
-    background-color: #1c2b2b;
     padding: 2rem;
 }
 
@@ -35,15 +30,13 @@
     cursor: pointer;
     width: 100%;
     padding: 1.5rem;
-    color: #adaeaf;
     text-transform: capitalize;
 }
 
 .profile-user-nav ul li:hover {
-    color: #f0f0f0;
+    font-weight: 600;
 }
 
-/* Formulario de datos del perfil del usuario */
 .profile-user-data form {
     margin: 5rem 0;
     padding: 0rem 2rem;
@@ -101,5 +94,9 @@
         gap: 5rem;
         padding: 0rem 5rem;
         margin: 0;
+    }
+
+    .profile-user-nav {
+        border-right: 2px solid #dadbcd;
     }
 }
