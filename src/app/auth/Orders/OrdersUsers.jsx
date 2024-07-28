@@ -1,21 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import "./OrdersUsers.css";
 import { springBootAxios } from '../../../api/axios';
 import { useState } from 'react';
 import Pdf from "../../../../public/svg/pdf.svg";
+import { AuthContext } from '../context/authContext';
 export const OrdersUsers = () => {
-  const { id } = JSON.parse(localStorage.getItem("cliente"));
+  const { user } = useContext(AuthContext);
   const [ordersClientDb, setOrdersClientDb] = useState([]);
   // TODO: REALIZAR CONSULTA PARA VER LOS PEDIDOS DEL CLIENTE!
   const getOrderByUserId = async () => {
-      const { data: { orderList } } = await springBootAxios.get(`/orders/${id}`);
-      setOrdersClientDb(orderList)
+    const { data: { orderList } } = await springBootAxios.get(`/orders/${user?.id}`);
+    setOrdersClientDb(orderList)
   }
   const orderViewPdf = () => {
     // TODO: REALIZAR PDF PARA VISIONAR EL PDF CON EL PEDIDO DEL CLIENTE
     window.open("", "_blank")
   }
-  useEffect(() => { getOrderByUserId(); }, [id]);
+  useEffect(() => { getOrderByUserId(); }, [user]);
   return (
     <div className='order-users'>
       {
