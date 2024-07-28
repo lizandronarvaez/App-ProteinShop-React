@@ -36,11 +36,14 @@ export const Trolley = ({ trolleyIsOpen, setTrolleyIsOpen }) => {
         <h2>Carrito</h2>
       </div>
       {/* Fin titulo */}
+
+      {/* !!TODO: SOLUCIONAR QUE EL CARRITO SEA SCROOL */}
+      <div>
       {
         cartProducts.map((product, i) => (
           // todo:solucionar inputs para recogida de informacion de uds
           <div className='trolley_products' key={i}>
-            <div className='trolley_product_item'>
+            <div className='trolley_product_item' >
               <h3>{product.fullname}</h3>
               <p className='product_img_price'>
                 <img className='img_cart' src={product.imageProduct} alt={product.imageProduct} />
@@ -52,6 +55,7 @@ export const Trolley = ({ trolleyIsOpen, setTrolleyIsOpen }) => {
           </div>
         ))
       }
+      </div>
       {
         !cartProducts.length
           ?
