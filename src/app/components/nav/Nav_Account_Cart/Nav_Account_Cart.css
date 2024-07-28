@@ -1,6 +1,6 @@
 .login-checkout {
     display: flex;
-    justify-content: space-between;
+    justify-content:end;
     align-items: end;
     color: #000;
 }
@@ -20,21 +20,18 @@
 .login-checkout .logout{
     width: 3rem;
 }
-.login-checkout a:first-child {
-    width: 20rem;
-}
 
 .login-checkout .user-authenticated {
     text-transform: capitalize;
     font-size: 1.4rem;
 }
 
-.products_length_cart {
+.login-checkout .products_length_cart {
     background-color: red;
     color: #fff;
     font-weight: 600;
-    border-radius: 100%;
-    padding: .3rem .7rem;
+    border-radius: 50%;
+    padding: .5rem 1rem;
 }
 
 @media (min-width: 992px) {
@@ -46,5 +43,20 @@
 
     .login-checkout a{
         font-size: 2rem;
+    }
+
+    .login-checkout .user-authenticated{
+        font-size: 2.4rem;
+        width: 100%;
+        display: flex;
+        align-items: end;
+    }
+
+    .login-checkout .logout{
+        width: 5rem;
+    }
+
+    .login-checkout .products_length_cart{
+        padding: .4rem 1rem;
     }
 }

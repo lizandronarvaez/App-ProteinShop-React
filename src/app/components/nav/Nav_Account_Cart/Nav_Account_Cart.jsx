@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
 import "./Nav_Account_Cart.css";
-import { Trolley } from "../index";
-import buttonLogout from "../../../../../public/svg/userLogout.svg";
-import account from "../../../../../public/svg/account.svg";
-import cart from "../../../../../public/svg/cart.svg";
-import { useCart } from '../../../context/CartTrolleyContext';
-import Swal from "sweetalert2/dist/sweetalert2.all";
-import { useContext } from 'react';
+import { account, buttonLogout, cart } from '../../../../../public';
 import { AuthContext } from '../../../auth/context/authContext';
+import { Link, useNavigate } from 'react-router-dom';
+import { Trolley } from "../index";
+import { useCart } from '../../../context/CartTrolleyContext';
+import { useContext } from 'react';
+import React, { useEffect, useState } from 'react'
+import Swal from "sweetalert2/dist/sweetalert2.all";
+
 export const Nav_Account_Cart = () => {
     const navigate = useNavigate();
+    const { userLogin } = useContext(AuthContext);
     const user = JSON.parse(localStorage.getItem("cliente"));
     const [trolleyIsOpen, setTrolleyIsOpen] = useState(false);
     const { cartProducts } = useCart();
@@ -27,9 +27,7 @@ export const Nav_Account_Cart = () => {
             cancelButtonText: "Cancelar"
         }).then((result) => {
             if (result.isConfirmed) {
-                //Limpiar el localStorage
                 logoutUser();
-                // Redireccionamos a la pagina principal
                 navigate("/", { replace: true })
             }
         });
@@ -40,11 +38,11 @@ export const Nav_Account_Cart = () => {
         <>
             <div className='login-checkout'>
                 {
-                    user?.fullname ?
+                    user ?
                         (
                             <>
                                 <Link to="/profile/user" className='user-authenticated'>
-                                    {user?.fullname}
+                                    {user?.fullname.split(" ")[0]}
                                     <img src={account} alt={account} />
                                 </Link>
                                 <img
@@ -62,7 +60,7 @@ export const Nav_Account_Cart = () => {
                         </Link>
                 }
                 {/* Carrito de compras */}
-                <Link onClick={() => setTrolleyIsOpen(true)}>Carrito
+                <Link onClick={() => setTrolleyIsOpen(true)}>
                     <img src={cart} alt={cart} />
                     <p className='products_length_cart'>{cartProducts.length}</p>
                 </Link>
