@@ -1,3 +1,8 @@
+:root{
+    --button-bg-color:#34495E;
+    --button-bg-color-hover:#283747;
+}
+
 html {
     font-size: 62.5%;
     box-sizing: border-box;
@@ -11,7 +16,8 @@ html {
 
 body {
     font-size: 16px;
-    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+    font-family: "Source Sans 3", sans-serif;
+    font-optical-sizing: auto;
     margin: 0 auto;
     padding: 0;
 }
