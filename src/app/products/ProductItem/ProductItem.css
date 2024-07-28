@@ -37,7 +37,7 @@
 .product-add-cart .productAddCart {
     padding: 1rem 2rem;
     color: white;
-    background-color: rgb(64, 108, 231);
+    background-color: var(--button-bg-color);
     border-radius: .5rem;
     font-size: 1.6rem;
     font-weight: 600;
@@ -47,7 +47,7 @@
 
 .product-add-cart .productAddCart:hover {
     cursor: pointer;
-    background-color: rgb(49, 97, 228);
+    background-color: var(--button-bg-color-hover);
 }
 
 

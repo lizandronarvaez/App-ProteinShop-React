@@ -14,17 +14,20 @@
     padding: .9rem;
     border-radius: 0 .5rem .5rem 0;
     border: none;
-    background-color: #0a59cb;
+    background-color: var(--button-bg-color);
     color: white;
-    cursor: pointer;
     margin-top: .5rem;
     width: 100%;
     outline: none;
+    text-transform:uppercase;
+    font-weight:600;
 }
-
+.discounts-form-box_submit button:hover{
+    cursor: pointer;
+    background-color: var(--button-bg-color-hover);
+}
 .discounts-form-box_submit button:focus {
     outline: none;
-    background-color: #093168;
 }
 
 
@@ -42,6 +45,7 @@
 
     .discounts-form-box_submit button {
         padding: .9rem;
+        margin-top: 0;
         border-radius: 0 .5rem .5rem 0;
     }
 }

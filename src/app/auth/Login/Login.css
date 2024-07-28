@@ -12,22 +12,26 @@
     border-radius: .1rem;
     font-size: 1.4rem;
 }
-
+.form-login .form-login-box input:hover{
+    border: 3px solid #999;
+}
 .form-login .form-login-box input:focus {
    outline: auto;
-
 }
 
 .form-login .form-login-box button{
     width: 100%;
     padding: 1rem;
-    background-color: #1c81ee;
+    background-color: var(--button-bg-color);
     border: none;
     color: white;
     font-size: 1.8rem;
     font-weight: 700;
     border-radius: .5rem;
-    cursor: pointer;
+}
+.form-login .form-login-box button:hover{
+    cursor:pointer;
+    background-color:var(--button-bg-color-hover);
 }
 
 @media (min-width: 992px){

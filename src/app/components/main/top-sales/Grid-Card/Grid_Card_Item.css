@@ -33,13 +33,14 @@
     margin: 0;
     font-size: 1.6rem;
     padding: 1rem 1.5rem;
-    background-color:rgb(64, 108, 231) ;
+    background-color: var(--button-bg-color);
     color: white;
     border-radius: .5rem;
     font-weight: 600;
     text-transform: uppercase;
 }
 .product-cart p:hover{
+    background-color: var(--button-bg-color-hover);
     cursor: pointer;
 }
 .product-cart input {

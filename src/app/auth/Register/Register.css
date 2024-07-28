@@ -17,7 +17,9 @@
     border-radius: .1rem;
     font-size: 1.4rem;
 }
-
+.form-register-box input:hover{
+    border: 3px solid #999;
+}
 .form-register-box input:focus {
     outline: auto;
 }
@@ -25,14 +27,18 @@
 .register-btn_submit button {
     width: 100%;
     padding: 1rem 2rem;
-    background-color: #1c81ee;
+    background-color:var(--button-bg-color);
     border: none;
     color: white;
     font-size: 1.8rem;
     font-weight: 700;
     border-radius: .5rem;
-    cursor: pointer;
     margin-top: 1rem;
+}
+
+.register-btn_submit button:hover{
+    cursor: pointer;
+    background-color:var(--button-bg-color-hover)
 }
 
 

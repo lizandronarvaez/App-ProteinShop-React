@@ -16,26 +16,21 @@
 
 .trolley .title h2 {
     border: none;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: white;
-
 }
 
 .trolley .title p {
-    cursor: pointer;
-    color: white;
     font-size: 3rem;
     margin: 0;
     display: flex;
     align-items: center;
 }
-
+.trolley .title p:hover{
+    cursor: pointer;
+}
 .trolley .title {
     display: flex;
     justify-content: space-between;
-    background-color: #6b97c6;
     padding: 0 1.5rem;
-
 }
 
 .trolley_products {
@@ -93,14 +88,14 @@
 
 .trolley_total button {
     width: 100%;
-    background-color: #1c81ee;
+    background-color: var(--button-bg-color);
     color: white;
     padding: 1rem 2rem;
     border: none;
     border-radius: .2rem;
 }
 .trolley_total button:first-of-type:hover {
-    background-color: #0854a6;
+    background-color: var(--button-bg-color-hover);
     cursor: pointer;
 }
 
