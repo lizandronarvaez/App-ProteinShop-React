@@ -1,9 +1,11 @@
 .nav-items {
     background-color: #6b97c6;
 }
-.item-nav-show{
+
+.item-nav-show {
     display: none;
 }
+
 .nav-items .hamburger-menu:hover {
     cursor: pointer;
 }
@@ -15,14 +17,13 @@
     align-items: center;
     padding: .5rem 0;
     margin: 0;
-
 }
 
 .nav-items ul li {
     list-style: none;
     padding: 1rem 4rem;
     color: #fff;
-
+    font-weight: 600;
 }
 
 .nav-items ul li:hover {
@@ -42,8 +43,8 @@
 
     .nav-items ul li {
         border-right: 1px solid #fff;
+        font-size: 2rem;
     }
-
     .hamburger-menu {
         display: none;
     }

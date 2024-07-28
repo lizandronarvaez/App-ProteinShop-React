@@ -5,9 +5,6 @@ import Menu from "../../../../../public/svg/menu.svg"
 export const NavItems = () => {
   const [toggle, setToggle] = useState(true);
   const myRef = useRef();
-
-  // TODO!!SOLUCIONAR EL TEMA DE MENU HAMBURGER PARA LOS ENLACES
-
   const handleResize = () => {
     if (window.innerWidth >= 768) {
       setToggle(true);
@@ -19,9 +16,7 @@ export const NavItems = () => {
     }
   }
 
-  useEffect(() => {
-    toggleClass();
-  }, [])
+  useEffect(() => {toggleClass();}, [])
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -46,7 +41,6 @@ export const NavItems = () => {
               </ul>
             </>
           }
-
         </div>
       </nav>
     </>
