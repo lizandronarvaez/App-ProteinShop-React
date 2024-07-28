@@ -8,8 +8,11 @@ export const AuthContext = createContext();
 // estado inicial
 const initialState = () => {
     const token = localStorage.getItem("token");
+    const userLogin = JSON.parse(localStorage.getItem("cliente"));
     return {
-        logged: !!token, token
+        logged: !!token,
+        token,
+        userLogin
     };
 };
 
