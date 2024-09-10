@@ -10,7 +10,7 @@ export const FormDiscounts = () => {
 
     const onSubmitForm = (e) => {
         e.preventDefault();
-        if (dataForm.suscription.length === 0) {
+        if (dataForm.suscription.length === 0 || !dataForm.suscription.includes("@")) {
             Swal.fire({
                 title: "Debes introducir un email válido",
                 icon: "error"
