@@ -53,6 +53,12 @@
     background-color: var(--button-bg-color-hover);
 }
 
+/* Boton de producto no dispoble si no existen unidades */
+.product-add-cart .productAddCart.not-avaliable {
+    background-color: #979494;
+    text-decoration: line-through;
+    cursor:default;
+}
 .product-item-info .status-avaliable {
     background-color: green;
     margin: 0 1rem;

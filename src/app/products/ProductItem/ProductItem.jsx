@@ -6,7 +6,8 @@ export const ProductItem = ({ product, addProductListCart }) => {
 
     const { imageProduct, quantity, fullname, price, description } = product;
     const imgExist = imageProduct && imageProduct;
-    const stockProduct = quantity > 0 ? 'Disponible' : "No disponible";
+    const quantityStockProduct = quantity > 0;
+    const stockProduct = quantity > 0 ? 'Disponible' : "Sin Stock";
     const statusProductColor = quantity > 0 ? "status-avaliable" : "status-no-avaliable";
     const tagNameImg = imageProduct.split("/")[8];
 
@@ -31,11 +32,19 @@ export const ProductItem = ({ product, addProductListCart }) => {
                 <p>{description}</p>
             </div>
             <div className='product-add-cart'>
-                <p className='productAddCart'
-                    onClick={handleAddToCart}
-                >
-                    Añadir al carrito
-                </p>
+                {
+                    quantityStockProduct
+                        ?
+                        <p className='productAddCart'
+                            onClick={handleAddToCart}
+                        >
+                            Añadir al carrito
+                        </p>
+                        : <p className='productAddCart not-avaliable'>
+                            Producto no disponible
+                        </p>
+                }
+
             </div>
         </div >
     )
