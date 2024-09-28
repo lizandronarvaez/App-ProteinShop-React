@@ -111,13 +111,13 @@ export const OrderProducts = () => {
   }, [cartProducts]);
 
   return (
-    <div className='container orders'>
+    <div className='w-4/5 mx-auto my-10'>
       {
         !cartProducts.length ? <CartIsOut />
           :
           (
             <>
-              <h1>Mi carrito</h1>
+              <h1 className='text-5xl py-10'>Mi carrito</h1>
               <form onSubmit={onSubmitOrder} className='list-order'>
                 <div className='list-order-product'>
                   <div className='head-products-list'>
@@ -129,7 +129,7 @@ export const OrderProducts = () => {
                     {cartProducts.map(({ id, fullname, imageProduct, price }) => (
                       <div className='product-list-item' key={id}>
                         <div>
-                          <img src={imageProduct} alt={imageProduct} />
+                          <img className='mx-auto' src={imageProduct} alt={imageProduct} />
                           <p>{fullname}</p>
                         </div>
                         <div className='quantity-products'>
