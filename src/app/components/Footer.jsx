@@ -12,10 +12,10 @@ export const Footer = () => {
   return (
     <>
       <div className='bg-info flex flex-col mt-10 py-20'>
-        <div className='md:flex md:justify-between mx-auto w-8/12 py-10 mt-10 text-stone-800'>
+        <div className='md:flex md:justify-between mx-auto w-4/5 sm:w-8/12 py-10 mt-10 text-stone-800'>
           <div>
             <h3 className='text-4xl mb-5'>Contacto</h3>
-            <div className='text-stone-500'>
+            <div className='text-stone-600'>
               <ul>
                 <li>Atención cliente:<b>+34 92612341234</b></li>
                 <li>Email: <b>contacto@proteinshop.com</b></li>
@@ -25,7 +25,7 @@ export const Footer = () => {
           </div>
           <div className='my-10 md:my-0'>
             <h3 className='text-4xl mb-5'>Información</h3>
-            <div className='text-stone-500'>
+            <div className='text-stone-600'>
               <ul>
                 <li>Envíos</li>
                 <li>Aviso Legal</li>
@@ -37,7 +37,7 @@ export const Footer = () => {
           </div>
           <div>
             <h3 className='text-4xl mb-5'>Usuario</h3>
-            <div className='text-stone-500'>
+            <div className='text-stone-600'>
               <ul>
                 <li>
                   {!isLogged && <Link to={"/account"}>Mi cuenta </Link>}
@@ -55,11 +55,11 @@ export const Footer = () => {
       </div >
       <div className='bg-stone-600 p-5'>
         <div className='flex text-white md:mx-auto md:w-1/2 justify-center items-end'>
-          <h6 className='font-semibold text-1xl sm:text-2xl lg:text-3xl mr-5'>Desarrollado por Lizandro Narváez</h6>
-          <div className='flex'>
-            <img src={IconReact} alt={IconReact} />
-            <img src={IconTailwind} alt={IconReact} />
-            <img src={IconVite} alt={IconReact} />
+          <h6 className='font-semibold text-xl sm:text-2xl lg:text-3xl mr-5'>Desarrollado por Lizandro Narváez</h6>
+          <div className='flex items-end'>
+            <img className='w-10' src={IconReact} alt={IconReact} />
+            <img className='w-10' src={IconTailwind} alt={IconReact} />
+            <img  className="w-10" src={IconVite} alt={IconReact} />
           </div>
         </div>
       </div>
