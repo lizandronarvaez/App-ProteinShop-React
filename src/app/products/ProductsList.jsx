@@ -21,7 +21,7 @@ export const ProductsList = () => {
     return (
         <>
                 <div className='container lg:space-x-10 lg:flex px-5 py-10'>
-                    <ProductFilter nameFilter={"Categorías"} data={categories} onCategoriesChange={handleSelectedCategoriesChange} />
+                    <ProductFilter nameFilter={"Categorías"} data={categories || []} onCategoriesChange={handleSelectedCategoriesChange} />
                     <ProductsAll categories={selectedCategories} productsDb={productsDb} />
                 </div>
         </>
