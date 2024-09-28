@@ -88,7 +88,6 @@
 
 .trolley_total button {
     width: 100%;
-    background-color: var(--button-bg-color);
     color: white;
     padding: 1rem 2rem;
     border: none;
