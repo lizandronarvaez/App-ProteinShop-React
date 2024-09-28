@@ -1,7 +1,7 @@
 import React from 'react'
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { productsDb: null, categories: null }
+const initialState = { productsDb: [], categories: [] }
 export const ProductsDbSlice = createSlice({
 
     name: "getProductsDb",
