@@ -22,7 +22,13 @@ export const UserAuthenticated = ({ toggleModalAuthenticated }) => {
                     <img className='w-12 hover:cursor-pointer' src={profile} alt={profile} onClick={navigateProfile} />
                 </div>
             }
-            {!user && <Link to="/account" ><img src={account} alt={account} /></Link>}
+            {!isLogged &&
+                <img className='rounded-full py-2 px-2 hover:cursor-pointer hover:bg-orange-400 transition-all ease-in-out duration-500'
+                    src={account}
+                    alt={account}
+                    onClick={() => navigate("/account")}
+                />
+            }
         </>
     )
 }
