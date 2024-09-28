@@ -3,11 +3,10 @@ import "./Main.css";
 import { Top_Sales } from './top-sales/Top_Sales';
 import { Discounts } from './discounts/Discounts';
 import { InfoStore } from './info-store/InfoStore';
-import { SliderImg } from '../UI/SliderImg';
 export const Main = () => {
   return (
     <>
-      <div className='container'>
+      <div className='w-11/12 md:w-4/5 mx-auto'>
         <div className='main-img'></div>
         <Top_Sales />
       </div>

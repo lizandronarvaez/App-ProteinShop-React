@@ -40,14 +40,14 @@ export const ProductItem = ({ product }) => {
             </div>
 
             <div className='flex flex-col'>
-                <p className='text-2xl md:text-3xl uppercase text-stone-500 mb-3 border-b-2'>{fullname}</p>
+                <p className='text-xl uppercase text-stone-500 mb-3 border-b-2'>{fullname}</p>
                 <div className='flex justify-between items-center my-5'>
                     <p className={`text-1xl md:text-3xl ${statusProductColor}`}>{stockProduct}</p>
                     <p className='text-1xl md:text-3xl text-stone-800800'>{price}€</p>
                 </div>
             </div>
             <div className='mb-5'>
-                <p className='uppercase text-lg md:text-xl text-stone-500'>{description}</p>
+                <p className='uppercase text-lg text-stone-500'>{description}</p>
                 <div className='mt-5'>
                     {quantityStockProduct && <button className=' bg-orange-400 hover:bg-orange-600 py-4 px-3 w-full text-white font-semibold rounded-lg' onClick={() => addProductCartList(product)} >Añadir al carrito</button>}
                     {!quantityStockProduct && <button className='bg-stone-400 py-4 px-3 w-full text-white line-through cursor-default rounded-lg'>No disponible</button>}

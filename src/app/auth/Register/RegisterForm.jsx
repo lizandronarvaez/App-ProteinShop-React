@@ -49,7 +49,7 @@ export const RegisterForm = () => {
 
   useEffect(() => { if (data) setForm(({ ...form, email: data })); }, [data]);
   return (
-    <div className='w-4/5 mx-auto py-20'>
+    <div className='w-11/12 md:w-3/5 mx-auto py-20'>
       <h1 className='text-3xl md:text-5xl'>Registrar mi cuenta</h1>
       <form onSubmit={handleSubmitForm}>
         <div className='grid md:grid-cols-2 gap-5 py-10'>

@@ -20,7 +20,7 @@ export const ProductsList = () => {
     useEffect(() => { loadProductsDb(); }, [])
     return (
         <>
-                <div className='container lg:space-x-10 lg:flex px-5 py-10'>
+                <div className='w-11/12 md:w-4/5 mx-auto lg:space-x-10 lg:flex px-5 py-10'>
                     <ProductFilter nameFilter={"Categorías"} data={categories} onCategoriesChange={handleSelectedCategoriesChange} />
                     <ProductsAll categories={selectedCategories} productsDb={productsDb} />
                 </div>
