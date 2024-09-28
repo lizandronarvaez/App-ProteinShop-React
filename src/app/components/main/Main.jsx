@@ -3,12 +3,11 @@ import { Top_Sales } from './top-sales/Top_Sales';
 import { Discounts } from './discounts/Discounts';
 import { InfoStore } from './info-store/InfoStore';
 import { SliderImg } from './SliderImg';
+import Image1 from  "../../../../public/backgrounds-main/background-main.webp";
+import Image2 from     "../../../../public/backgrounds-main/nutricion-deporte-800x600.jpg"
 export const Main = () => {
-
-  const images = [
-    "../../../../public/backgrounds-main/background-main.webp",
-    "../../../../public/backgrounds-main/nutricion-deporte-800x600.jpg"
-  ]
+  const images = [Image1,Image2]
+  console.log(images)
   return (
     <>
     <div className='py-5'>
