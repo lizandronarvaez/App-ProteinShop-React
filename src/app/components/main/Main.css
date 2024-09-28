@@ -5,35 +5,3 @@
     background-position: center center;
     min-height: 50vh;
 }
-
-.main-info{
-    text-align: center;
-    background-color: #6b97c6;
-    padding: 1.5rem 0;
-    width: 100%;
-}
-
-.main-info h2{
-    margin: 0 auto;
-    color: #fff;
-
-}
-.main-info p{
-    margin: 0 auto;
-    width:0px;
-    height:0px;
-    border-style: solid;
-    border-width: 1rem;
-    border-bottom-width:0px;
-    border-color: #fff transparent transparent transparent;
-}
-
-.components-main{
-    margin: 0 auto;
-}
-
-@media (min-width: 992px){
-    .main-img{
-        min-height: calc(100vh - 15rem);
-    }
-}

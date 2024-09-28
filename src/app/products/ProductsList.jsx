@@ -1,43 +1,29 @@
 import React, { useEffect, useState } from 'react'
-import "./ProductsList.css";
-import { ProductFilter } from './ProductFilter/ProductFilter';
-import { ProductsAll } from './ProductsAll/ProductsAll';
+import { ProductFilter } from './ProductFilter';
+import { ProductsAll } from './ProductsAll';
 import { springBootAxios } from '../../api/axios';
-import { SpinnerCategory } from './Spinner/SpinnerCategory';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories, getProducts } from '../store/ProductsDbSlice';
 export const ProductsList = () => {
-
-    const [categories, setCategories] = useState([]);
+    const dispatch = useDispatch();
+    const { productsDb, categories } = useSelector(state => state.products);
     const [selectedCategories, setSelectedCategories] = useState([]);
 
-    const getCategoriesDB = async () => {
-        const { data } = await springBootAxios.get("/categories");
-        setCategories(data);
+    const loadProductsDb = async () => {
+        const { data: products } = await springBootAxios.get("/products");
+        const { data: categories } = await springBootAxios.get("/categories");
+        dispatch(getProducts(products))
+        dispatch(getCategories(categories))
     }
 
     const handleSelectedCategoriesChange = (newSelectedCategories) => setSelectedCategories(newSelectedCategories);
-    useEffect(() => { getCategoriesDB(); }, [])
+    useEffect(() => { loadProductsDb(); }, [])
     return (
         <>
-            <div className='container'>
-                <div className='grid-products'>
-                    {/* Cajas de filtros de productos */}
-                    <div className='filter-products'>
-                        <h3>Filtros</h3>
-                        <div className='filter-products-list'>
-                            {
-                                !categories.length ? (
-                                    <SpinnerCategory />
-                                ) : (
-
-                                    <ProductFilter nameFilter={"Categorías"} data={categories} onCategoriesChange={handleSelectedCategoriesChange} />
-                                )
-                            }
-                        </div>
-                    </div>
-                    {/* LISTA CON TODOS LOS PRODUCTOS */}
-                    <ProductsAll categories={selectedCategories} />
+                <div className='container lg:space-x-10 lg:flex px-5 py-10'>
+                    <ProductFilter nameFilter={"Categorías"} data={categories} onCategoriesChange={handleSelectedCategoriesChange} />
+                    <ProductsAll categories={selectedCategories} productsDb={productsDb} />
                 </div>
-            </div>
         </>
     )
 }

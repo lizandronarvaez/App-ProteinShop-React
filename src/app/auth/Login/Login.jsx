@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
 import { springBootAxios } from '../../../api/axios';
 import Swal from "sweetalert2/dist/sweetalert2.all";
-import { useContext } from 'react';
-import { AuthContext } from '../context/authContext';
 import { SpinnerLoading } from '../spinner/SpinnerLoading';
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from '../../store/AuthSlice';
+import axios from 'axios';
+import { Input } from '../../components/UI/Input';
+import { ButtonAuth } from '../UI/ButtonAuth';
 const formValues = { email: "", password: "" }
 export const Login = () => {
-
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [formData, setFormData] = useState(formValues);
-    const { loginUser } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
 
     const onInputChange = ({ target: { value, name } }) => {
@@ -21,7 +22,7 @@ export const Login = () => {
 
     const onSumbitFormData = async (e) => {
         e.preventDefault();
-
+        
         if (!formData.email.toLowerCase().includes("@")) {
             Swal.fire({ title: "El correo no es válido", text: "Introduce un correo válido", icon: "error" });
             return;
@@ -35,16 +36,10 @@ export const Login = () => {
         try {
             // Inicio de sesion
             const { data: { token, client, message, status } } = await springBootAxios.post("/clients/login", formData)
-            localStorage.setItem("token", token);
-            localStorage.setItem("cliente", JSON.stringify(client));
-            // Realiza la accion por debajo 
-            loginUser(localStorage.getItem("token"));
-            if (status === 200) {
-                Swal.fire({ title: message, timer: 1500 });
-                navigate("/profile/user", { replace: true })
-            }
+            dispatch(loginUser({ token, client }));
             setIsLoading(true);
-        } catch ({ response: { data } }) {
+        } catch (error) {
+            console.log(error)
             Swal.fire({
                 title: "Email o password incorrectos" || data,
                 text: "",
@@ -56,28 +51,16 @@ export const Login = () => {
     }
 
     return (
-        <div className='container'>
-            <div className='form'>
-                <form className='form-login' onSubmit={onSumbitFormData}>
-                    <h2>Conectarme a mi cuenta</h2>
-                    <div className='form-login-box'>
-                        <label htmlFor="email"></label>
-                        <input type="email" name="email" placeholder='Correo eléctronico' autoComplete='email' onChange={onInputChange} value={formData.email} />
-                    </div>
-                    <div className='form-login-box'>
-                        <label htmlFor="password"></label>
-                        <input type="password" name="password" placeholder='Password' autoComplete='current-password' onChange={onInputChange} value={formData.password} />
-                    </div>
-                    <div className='form-login-box button-submit-login'>
-                        {
-                            isLoading
-                                ? <SpinnerLoading />
-                                : <button type="submit">Login</button>
-
-                        }
-                    </div>
-                </form>
-            </div>
+        <div>
+            <form className='flex flex-col' onSubmit={onSumbitFormData}>
+                <h2 className='md:text-5xl'>Conectarme a mi cuenta</h2>
+                <div>
+                    <Input label="Email" type="email" name="email" placeholder="Ingresa tu email" onchange={onInputChange} />
+                    <Input label="Password" type="password" name="password" placeholder="Ingresa tu contraseña" onchange={onInputChange} />
+                </div>
+                {isLoading && <SpinnerLoading />}
+                {!isLoading && <ButtonAuth type="Login" />}
+            </form>
         </div>
     )
 }

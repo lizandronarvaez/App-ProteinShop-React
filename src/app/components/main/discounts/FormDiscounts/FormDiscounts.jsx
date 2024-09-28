@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import "./FormDiscounts.css";
 import Swal from 'sweetalert2/dist/sweetalert2.all';
 
 const form = { suscription: "" }
@@ -39,14 +38,14 @@ export const FormDiscounts = () => {
         // TODO:ENVIAR AL BACKEND!!
     }
     return (
-        <div className='discounts-form'>
-            <form onSubmit={onSubmitForm}>
-                <div className='discounts-form-box'>
-                    <label htmlFor="suscription"></label>
-                    <input type="text" onChange={inputValueForm} name="suscription" id='suscription' placeholder='Introduce tu email' />
-                </div>
-                <div className='discounts-form-box discounts-form-box_submit'>
-                    <button type="submit">Suscribirse</button>
+        <div>
+            <form className='mt-5' onSubmit={onSubmitForm}>
+                <div className='md:w-1/2 mx-auto'>
+                    <div>
+                        <label htmlFor="suscription"></label>
+                        <input className='bg-stone-100 outline-none  text-stone-600  w-full py-3 px-5' type="text" onChange={inputValueForm} name="suscription" id='suscription' placeholder='Introduce tu email' />
+                    </div>
+                    <button className='bg-orange-400 hover:bg-orange-500 rounded-lg font-semibold text-white w-full py-3 mt-1' type="submit">Suscribirse</button>
                 </div>
             </form>
         </div>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import "./RegisterForm.css";
 import { useNavigate, useLocation } from "react-router";
 import { springBootAxios } from '../../../api/axios';
 import Swal from 'sweetalert2/dist/sweetalert2.all';
+import { Input } from '../../components/UI/Input';
+import { ButtonAuth } from '../UI/ButtonAuth';
 const formData = {
   fullname: "",
   email: "",
@@ -19,7 +20,6 @@ export const RegisterForm = () => {
   const data = location.state?.data;
 
   const [form, setForm] = useState(formData);
-  const { email } = form;
   const handleInputForm = ({ target: { name, value } }) => { setForm({ ...form, [name]: value }); }
 
   const handleSubmitForm = async (e) => {
@@ -37,10 +37,11 @@ export const RegisterForm = () => {
         navigate("/account")
         return;
       }
-    } catch ({ response }) {
+    } catch (error) {
+      console.log(error)
       Swal.fire({
-        title: "Hubo un error",
-        text: response?.data,
+        title: "Hubo un error al realizar el registro",
+        text: error?.response?.data,
         icon: "error"
       });
     }
@@ -48,85 +49,20 @@ export const RegisterForm = () => {
 
   useEffect(() => { if (data) setForm(({ ...form, email: data })); }, [data]);
   return (
-    <div className='container form-register-client'>
-      <h1>Registrar mi cuenta</h1>
+    <div className='w-4/5 mx-auto py-20'>
+      <h1 className='text-3xl md:text-5xl'>Registrar mi cuenta</h1>
       <form onSubmit={handleSubmitForm}>
-        <div className='form-client-box'>
-          <label htmlFor="fullname"></label>
-          <input
-            type="text"
-            name='fullname'
-            placeholder='Nombre completo'
-            onChange={handleInputForm}
-          />
+        <div className='grid md:grid-cols-2 gap-5 py-10'>
+          <Input label="Nombre Completo" name="fullname" type="text" placeholder="Nombre completo" onchange={handleInputForm}/>
+          <Input label="Email" name="email" type="email" value={form.email} onchange={handleInputForm}/>
+          <Input label="Contraseña" name="password" type="password" placeholder="Introduce una contraseña segura" onchange={handleInputForm}/>
+          <Input label="Teléfono" name="phone" type="text" placeholder="Teléfono de contacto" onchange={handleInputForm}/>
+          <Input label="Dirección completa" name="address" type="text" placeholder="Dirección completa" onchange={handleInputForm}/>
+          <Input label="Código Postal" name="postalcode" type="text" placeholder="Código Postal" onchange={handleInputForm}/>
+          <Input label="Ciudad" name="city" type="text" placeholder="Ciudad" onchange={handleInputForm}/>
+          <Input label="País" name="country" type="text" placeholder="País" onchange={handleInputForm}/>
         </div>
-        <div className='form-client-box'>
-          <label htmlFor="email"></label>
-          <input
-            type="email"
-            name='email'
-            value={form.email}
-            placeholder='Correo electrónico'
-            onChange={handleInputForm}
-          />
-        </div>
-        <div className='form-client-box'>
-          <label htmlFor="password"></label>
-          <input
-            type="password"
-            name='password'
-            placeholder='Contraseña'
-            onChange={handleInputForm}
-          />
-        </div>
-        <div className='form-client-box'>
-          <label htmlFor="phone"></label>
-          <input
-            type="text"
-            name='phone'
-            placeholder='Teléfono'
-            onChange={handleInputForm}
-          />
-        </div>
-        <div className='form-client-box'>
-          <label htmlFor="address"></label>
-          <input
-            type="text"
-            name='address'
-            placeholder='Dirección completa'
-            onChange={handleInputForm}
-          />
-        </div>
-        <div className='form-client-box'>
-          <label htmlFor="postalcode"></label>
-          <input
-            type="text"
-            name='postalcode'
-            placeholder='Código postal'
-            onChange={handleInputForm}
-          />
-        </div>
-        <div className='form-client-box'>
-          <label htmlFor="city"></label>
-          <input
-            type="text"
-            name='city'
-            placeholder='Ciudad'
-            onChange={handleInputForm}
-          />
-        </div>
-        <div className='form-client-box'>
-          <label htmlFor="country"></label>
-          <input
-            type="text"
-            name='country'
-            placeholder='País'
-            onChange={handleInputForm}
-          />
-        </div>
-        <div className='form-client-box btn-form-client'>
-          <button type='submit'>Registrarse</button>
-        </div>
+        <ButtonAuth type="Completar registro"/>
       </form>
     </div>
   )

@@ -5,15 +5,15 @@ import { CartIsOut } from './CartIsOut';
 import { springBootAxios } from '../../api/axios';
 import Swal from 'sweetalert2/dist/sweetalert2.all';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from "../auth/context/authContext";
+import { useSelector } from 'react-redux';
 
 export const OrderProducts = () => {
-  const { cartProducts, removeProduct } = useCart();
   const navigate = useNavigate();
-  const clientStorage = JSON.parse(localStorage.getItem("cliente"));
-  const [quantities, setQuantities] = useState({});
-  const { logged } = useContext(AuthContext);
 
+  const { cartProducts, removeProduct } = useCart();
+  const [quantities, setQuantities] = useState({});
+
+  const { isLogged, user } = useSelector(state => state?.auth);
   // 
   const totalOrder = cartProducts.reduce((total, { id, price }) => {
     const quantity = quantities[id] || 1;
@@ -42,16 +42,14 @@ export const OrderProducts = () => {
   };
 
   // 
-  const client = { id: clientStorage?.id, email: clientStorage?.email, fullname: clientStorage?.fullname };
-  const orderProducts = cartProducts.map((product) => {
-    const quantity = quantities[product?.id] || 1;
-    return {
-      id: product?.id, fullname: product?.fullname, price: product?.price, quantity
-    };
+
+  const orderProducts = cartProducts.map(({ id, fullname, price, quantity }) => {
+    const quantityNew = quantities[id] || 1;
+    return { id, fullname, price, quantityNew };
   });
 
   const orderClientSubmit = {
-    client,
+    client: { id: user?.id, email: user?.email, fullname: user?.fullname },
     order: orderProducts,
     total: totalOrder.toFixed(2)
   };
@@ -67,7 +65,7 @@ export const OrderProducts = () => {
 
   const onSubmitOrder = async (e) => {
     e.preventDefault();
-    if (!logged) {
+    if (!isLogged) {
       await Swal.fire({
         position: "center",
         icon: "error",
@@ -75,7 +73,7 @@ export const OrderProducts = () => {
         showConfirmButton: false,
         timer: 2000
       });
-
+      navigate("/account")
       return;
     }
 
@@ -84,6 +82,8 @@ export const OrderProducts = () => {
     console.log(status);
 
     // navigate("/checkout")
+
+    // DESPUES CREA LA ORDEN 
     // try {
     //   const { status } = await springBootAxios.post("/orders", orderClientSubmit)
     //   if (status === 200) {
@@ -136,7 +136,9 @@ export const OrderProducts = () => {
                           <button type='button' className='less'
                             onClick={() => handleQuantityChange(id, (quantities[id] || 1) - 1)}
                           // disabled={quantities[id] <= 1}
-                          >-</button>
+                          >
+                            -
+                          </button>
                           <input
                             type="text"
                             name="quantity"
@@ -146,7 +148,9 @@ export const OrderProducts = () => {
                           />
                           <button type='button' className='more'
                             onClick={() => handleQuantityChange(id, (quantities[id] || 1) + 1)}
-                          >+</button>
+                          >
+                            +
+                          </button>
                         </div>
                         <div>
                           <p>{(price * (quantities[id] || 1)).toFixed(2)}€</p>
@@ -158,7 +162,7 @@ export const OrderProducts = () => {
                 <div className="list-order-checkout">
                   <h2>Total: <span>{(totalOrder).toFixed(2)}€</span></h2>
                   <div className='check-total'>
-                    <button type='submit'>Pagar</button>
+                    <button type='submit'>Completar pago</button>
                   </div>
                 </div>
               </form>

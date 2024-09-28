@@ -15,6 +15,8 @@ export const RoutePublic = ({ elements }) => {
       <Route path='/account/form-register' element={<RegisterForm />} />
 
       <Route path='/' element={<Main />} />
+      <Route path="/*" element={<Navigate to={"/"} />} />
+
     </Routes>
   )
 }

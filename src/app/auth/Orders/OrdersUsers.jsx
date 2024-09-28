@@ -2,35 +2,29 @@ import React, { useContext, useEffect } from 'react';
 import "./OrdersUsers.css";
 import { springBootAxios } from '../../../api/axios';
 import { useState } from 'react';
-import Pdf from "../../../../public/svg/pdf.svg";
-import { AuthContext } from '../context/authContext';
-export const OrdersUsers = () => {
-  const { user } = useContext(AuthContext);
+import { useSelector } from 'react-redux';
+import { OrderItem } from './OrderItem/OrderItem';
+export const OrdersUsers = ({ user, token }) => {
+
+  // ORDENES DEL CLIENTE
   const [ordersClientDb, setOrdersClientDb] = useState([]);
-  // TODO: REALIZAR CONSULTA PARA VER LOS PEDIDOS DEL CLIENTE!
-  const getOrderByUserId = async () => {
-    const { data: { orderList } } = await springBootAxios.get(`/orders/${user?.id}`);
-    setOrdersClientDb(orderList)
-  }
-  const orderViewPdf = () => {
-    // TODO: REALIZAR PDF PARA VISIONAR EL PDF CON EL PEDIDO DEL CLIENTE
-    window.open("", "_blank")
-  }
-  useEffect(() => { getOrderByUserId(); }, [user]);
+  // DATOS DEL USUARIO
+  const { id } = user;
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const getOrderByUserId = async () => {
+      setIsLoading(true);
+      const { data: { orderList } } = await springBootAxios.get(`/orders/${id}`);
+      setOrdersClientDb(orderList)
+      setIsLoading(false);
+    }
+    getOrderByUserId();
+  }, [id]);
   return (
     <div className='order-users'>
-      {
-        ordersClientDb.map((order, i) => (
-          <div key={order.id}>
-            <ul>
-              <li>Nº Pedido: <span>{order.id}</span></li>
-              <li>Fecha Pedido: <span>{order.createdAt}</span> </li>
-              <li>Total Pedido: <span>{order.total}€</span> </li>
-              <li>Ver Pedido:<img src={Pdf} alt={Pdf} onClick={orderViewPdf} /></li>
-            </ul>
-          </div>
-        ))
-      }
+      {isLoading && <p>Cargando lista de pedidos...</p>}
+      {!isLoading && ordersClientDb.map((order, i) => <OrderItem order={order} key={i}/>)}
     </div>
   )
 }

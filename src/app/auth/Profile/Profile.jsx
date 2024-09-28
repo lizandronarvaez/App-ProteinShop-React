@@ -1,21 +1,14 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import "./Profile.css";
 import userProfile from "../../../../public/svg/userProfile.svg"
 import userOrders from "../../../../public/svg/userOrders.svg"
-import { Link, Route, Routes, useNavigate } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import { ProfileForm } from './ProfileForm';
 import { OrdersUsers } from '../Orders/OrdersUsers';
-import { AuthContext } from '../context/authContext';
+import { useSelector } from 'react-redux';
 
 export const Profile = () => {
-    const user = JSON.parse(localStorage.getItem("cliente"));
-    const { logged } = useContext(AuthContext);
-    const navigate = useNavigate();
-    useEffect(() => {
-        if (!logged) navigate("/account");
-    }, [logged, navigate, user])
-
-    if (!logged) return null;
+    const { user, token } = useSelector(state => state.auth);
 
     return (
         <div className='profile-user' >
@@ -30,7 +23,7 @@ export const Profile = () => {
                 <div className='profile-user-data'>
                     <Routes>
                         <Route path="/user" element={<ProfileForm user={user} />} />
-                        <Route path="/orders_users" element={<OrdersUsers />} />
+                        <Route path="/orders_users" element={<OrdersUsers user={user} token={token} />} />
                     </Routes>
                 </div>
             </div>

@@ -9,11 +9,14 @@ export const RoutePrivate = () => {
   return (
     <Routes>
       <Route path='/profile/*' element={<Profile />} />
-      
+
       <Route path='/submit-order' element={<OrderProducts />} />
       <Route path='/products' element={<ProductsList />} />
 
       <Route path='/' element={<Main />} />
+
+      <Route path="/*" element={<Navigate to={"/"} />} />
+
     </Routes>
   )
 }

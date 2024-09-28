@@ -1,20 +1,20 @@
 import React, { useContext, useEffect } from 'react'
-import { Header } from '../app/components/header/Header'
-import { Nav } from '../app/components/nav/Nav/Nav'
-import { Footer } from '../app/components/footer/Footer'
+import { Header } from '../app/components/Header'
+import { Nav } from '../app/components/nav/Nav'
+import { Footer } from '../app/components/Footer'
 import { RoutePrivate } from '../app/routes/RoutePrivate'
 import { RoutePublic } from '../app/routes/RoutePublic'
-import { AuthContext } from '../app/auth/context/authContext'
+import { useSelector } from 'react-redux'
 
 export const RouterApp = () => {
-  const { logged } = useContext(AuthContext);
-  useEffect(() => { }, [logged])
+  const { isLogged } = useSelector(state => state.auth);
 
   return (
     <>
       <Header />
       <Nav />
-      {logged ? <RoutePrivate /> : <RoutePublic />}
+      {isLogged && <RoutePrivate />}
+      {!isLogged && <RoutePublic />}
       <Footer />
     </>
 
