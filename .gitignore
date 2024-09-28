@@ -23,5 +23,3 @@ dist-ssr
 *.sln
 *.sw?
 .env
-public/svg/react.svg
-public/svg/vite.svg
