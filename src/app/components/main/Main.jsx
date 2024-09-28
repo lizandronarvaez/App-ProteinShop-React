@@ -7,7 +7,6 @@ import Image1 from  "../../../../public/backgrounds-main/background-main.webp";
 import Image2 from     "../../../../public/backgrounds-main/nutricion-deporte-800x600.jpg"
 export const Main = () => {
   const images = [Image1,Image2]
-  console.log(images)
   return (
     <>
     <div className='py-5'>
