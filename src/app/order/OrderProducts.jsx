@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import "./OrderProducts.css";
 import { useCart } from '../context/CartTrolleyContext';
 import { CartIsOut } from './CartIsOut';
 import { springBootAxios } from '../../api/axios';
@@ -118,37 +117,33 @@ export const OrderProducts = () => {
           (
             <>
               <h1 className='text-5xl py-10'>Mi carrito</h1>
-              <form onSubmit={onSubmitOrder} className='list-order'>
-                <div className='list-order-product'>
-                  <div className='head-products-list'>
-                    <p>Producto</p>
-                    <p>Cantidad</p>
-                    <p>Total</p>
+              <form onSubmit={onSubmitOrder} className='grid lg:grid-cols-[80%_auto] gap-20'>
+                {/* List of products */}
+                <div className='border'>
+                  <div className='flex justify-around py-4'>
+                    <p className='font-semibold'>Producto</p>
+                    <p className='font-semibold'>Cantidad</p>
+                    <p className='font-semibold'>Total</p>
                   </div>
-                  <div className='body-products-list'>
+                  <div className='border-t w-full text-center py-8'>
                     {cartProducts.map(({ id, fullname, imageProduct, price }) => (
-                      <div className='product-list-item' key={id}>
-                        <div>
-                          <img className='mx-auto' src={imageProduct} alt={imageProduct} />
-                          <p>{fullname}</p>
+                      <div className='grid grid-cols-3 items-end px-2 py-10 border-b' key={id}>
+                        <div className='mx-4'>
+                          <img className='mx-auto max-w-[5rem]' src={imageProduct} alt={fullname} />
+                          <p className='text-lg md:text-xl capitalize font-semibold text-stone-600 mt-5'>{fullname}</p>
                         </div>
-                        <div className='quantity-products'>
-                          <button type='button' className='less'
-                            onClick={() => handleQuantityChange(id, (quantities[id] || 1) - 1)}
-                          // disabled={quantities[id] <= 1}
-                          >
+                        <div className='flex flex-col-reverse items-center md:flex-row md:justify-center'>
+                          <button type='button' className='h-12 w-16 bg-gray-300 text-4xl' onClick={() => handleQuantityChange(id, (quantities[id] || 1) - 1)}>
                             -
                           </button>
                           <input
+                            className='h-12 w-20 text-xl text-center'
                             type="text"
                             name="quantity"
                             value={quantities[id] || 1}
-                            min={1}
                             readOnly
                           />
-                          <button type='button' className='more'
-                            onClick={() => handleQuantityChange(id, (quantities[id] || 1) + 1)}
-                          >
+                          <button type='button' className='h-12 w-16 bg-gray-300 text-4xl' onClick={() => handleQuantityChange(id, (quantities[id] || 1) + 1)}>
                             +
                           </button>
                         </div>
@@ -159,10 +154,14 @@ export const OrderProducts = () => {
                     ))}
                   </div>
                 </div>
-                <div className="list-order-checkout">
-                  <h2>Total: <span>{(totalOrder).toFixed(2)}€</span></h2>
+
+                {/* Checkout summary */}
+                <div className="border max-h-80 px-5 flex flex-col justify-around text-center">
+                  <h2>Total: <span>{totalOrder.toFixed(2)}€</span></h2>
                   <div className='check-total'>
-                    <button type='submit'>Completar pago</button>
+                    <button className="w-full py-6 rounded-md bg-[#14213d] text-white font-semibold mt-8 hover:bg-[#355496]" type='submit'>
+                      Completar pago
+                    </button>
                   </div>
                 </div>
               </form>
