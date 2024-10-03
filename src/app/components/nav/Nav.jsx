@@ -11,7 +11,7 @@ export const Nav = () => {
     return (
         <>
             <div className='w-11/12 md:w-4/5 mx-auto'>
-                <div className='py-5 mx-auto flex justify-between border-b-2 '>
+                <div className='py-5 mx-auto flex justify-between border-b '>
                     <div className='flex items-end hover:cursor-pointer'>
                         <img className='w-20 h-20' src={LogoTienda} alt={LogoTienda} />
                         <h2 className='text-3xl md:text-5xl font-light' onClick={() => navigate("/")}>
