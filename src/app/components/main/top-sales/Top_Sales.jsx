@@ -8,7 +8,7 @@ export const Top_Sales = () => {
 
     return (
         <div className='py-20'>
-            <h2 className='bg-orange-200 text-center text-stone-600 text-lg md:text-3xl font-semibold py-10 mb-8'>
+            <h2 className='bg-orange-200 text-center text-stone-800 text-lg md:text-3xl font-semibold py-10 px-2 mb-8'>
                 ¡No te pierdas nuestras ofertas en los productos más vendidos!
             </h2>
             {!filterProductsTop?.length && <p className='text-center'>Cargando productos...</p>}
