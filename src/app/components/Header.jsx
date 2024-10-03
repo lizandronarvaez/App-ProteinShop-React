@@ -3,7 +3,7 @@ import { FaPhoneAlt, FaShippingFast, FaClock } from 'react-icons/fa';
 
 export const Header = () => {
     return (
-        <div className='bg-gray-100 flex flex-col md:flex-row justify-between md:justify-around items-center text-stone-600 text-lg md:text-2xl font-light p-4 shadow-md'>
+        <div className='bg-gray-100 flex flex-col md:flex-row justify-between md:justify-around items-center text-stone-800 text-lg md:text-2xl font-light p-4 shadow-md'>
             <div className='flex items-center space-x-2'>
                 <FaPhoneAlt className='text-xl' />
                 <p>Contacto: <strong>926 123 456</strong></p>
