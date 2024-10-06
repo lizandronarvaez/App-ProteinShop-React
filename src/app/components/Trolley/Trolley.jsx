@@ -12,6 +12,7 @@ export const Trolley = ({ trolleyIsOpen, setTrolleyIsOpen }) => {
     const closeDivCart = () => setTrolleyIsOpen(false);
     const dispatch = useDispatch();
     const { listProductCart, total } = useSelector(state => state.cart);
+    const totalCart=total.toFixed(2);
     const makeOrder = () => {
         closeDivCart();
         navigate("/submit-order");
@@ -35,7 +36,7 @@ export const Trolley = ({ trolleyIsOpen, setTrolleyIsOpen }) => {
                 <div className="px-4 py-2">
                     <div className="flex justify-between mb-4">
                         <p className="font-semibold text-stone-600">Total:</p>
-                        <p className='font-semibold text-stone-600'>{total}€</p>
+                        <p className='font-semibold text-stone-600'>{totalCart}€</p>
                     </div>
                     <button className="flex justify-center items-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded shadow-md transition duration-300 w-full mb-2"
                         onClick={makeOrder}
