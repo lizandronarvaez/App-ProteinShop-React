@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useCart } from '../context/CartTrolleyContext';
+import React from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { addProductCart } from '../store/CartTrolleySlice';
 import Swal from "sweetalert2/dist/sweetalert2.all";
 
 export const ProductItem = ({ product }) => {
@@ -8,30 +9,30 @@ export const ProductItem = ({ product }) => {
     const stockProduct = quantity > 0 ? 'En stock' : "Sin Stock";
     const statusProductColor = quantity > 0 ? "text-green-500 font-semibold" : "text-red-500 font-semibold";
     const tagNameImg = imageProduct?.split("/")[8];
-    const { cartProducts, setCartProducts } = useCart();
+    const dispatch = useDispatch();
+    const { listProductCart } = useSelector(state => state.cart);
 
-    const addProductCartList = (product) => {
-
-        const isProductInCart = cartProducts.some(item => item.id === product.id);
-        if (isProductInCart) {
+    const addProductCartList = () => {
+        const isInCart = listProductCart.find(pro => pro.id === product.id);
+        if (!isInCart) {
+            dispatch(addProductCart(product));
             Swal.fire({
                 position: "center",
-                icon: "error",
-                title: "Ya está en tu carrito",
+                icon: "success",
+                title: "Agregado al carrito",
                 showConfirmButton: false,
                 timer: 1200
             });
-            return;
+        } else {
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "El producto ya está en el carrito",
+                showConfirmButton: false,
+                timer: 1200
+            });
         }
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Agregado a carrito",
-            showConfirmButton: false,
-            timer: 1200
-        });
-        setCartProducts([...cartProducts, product])
-    };
+    }
     return (
 
         <div className='flex flex-col justify-between h-full'>

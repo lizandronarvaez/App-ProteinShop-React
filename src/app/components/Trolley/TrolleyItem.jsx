@@ -1,8 +1,12 @@
 import React from 'react'
 import cartout from "../../../../public/svg/cart_out.svg";
 import { MdDeleteForever } from "react-icons/md";
+import { deleteProductCart } from '../../store/CartTrolleySlice';
+import { useDispatch } from 'react-redux';
 
-export const TrolleyItem = ({ cartProducts, deleteProductCartList }) => {
+export const TrolleyItem = ({ cartProducts }) => {
+    const dispatch = useDispatch();
+    const deleteProductCartList = (id) => dispatch(deleteProductCart(id))
     return (
         <div className="p-4">
             {
