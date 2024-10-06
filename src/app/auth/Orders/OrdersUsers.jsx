@@ -1,9 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-import "./OrdersUsers.css";
 import { springBootAxios } from '../../../api/axios';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { OrderItem } from './OrderItem/OrderItem';
+import { OrderItem } from './OrderItem';
 export const OrdersUsers = ({ user, token }) => {
 
   // ORDENES DEL CLIENTE
@@ -22,9 +21,10 @@ export const OrdersUsers = ({ user, token }) => {
     getOrderByUserId();
   }, [id]);
   return (
-    <div className='order-users'>
+    <div className='px-5 md:px-20 text-center py-10'>
       {isLoading && <p>Cargando lista de pedidos...</p>}
-      {!isLoading && ordersClientDb.map((order, i) => <OrderItem order={order} key={i}/>)}
+      {!isLoading && ordersClientDb.map((order, i) => <OrderItem order={order} key={i} />)}
+      {!isLoading && !ordersClientDb.length && <p>Sin registro de pedidos realizados</p>}
     </div>
   )
 }
