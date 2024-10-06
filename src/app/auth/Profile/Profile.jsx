@@ -21,7 +21,7 @@ export const Profile = () => {
                     <ul>
                         <Link to="/profile/user"><li><img src={userProfile} alt={userProfile} />Datos Personales</li></Link>
                         <Link to="/profile/orders_users"><li><img src={userOrders} alt={userProfile} />Pedidos</li></Link>
-                        <Link className='py-5 px-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold text-center'
+                        <Link className='block md:hidden py-5 px-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold text-center'
                         onClick={()=>dispatch(logoutUser())}
                         >Salir de mi cuenta</Link>
                     </ul>
