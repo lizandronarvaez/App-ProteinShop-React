@@ -31,8 +31,8 @@ export const OrderProducts = () => {
       if (isConfirmed) dispatch(deleteProductCart(productId));
     }
   };
-  const shippingCostWhithProducts = TotalCart > 0 ? (parseFloat(TotalCart) + 5).toFixed(2) : TotalCart.toFixed(2);
   const shippingCost = TotalCart > 20 ? "Gratis" : "5€";
+  const shippingCostWhithProducts = TotalCart < 20 ? (parseFloat(TotalCart) + 5).toFixed(2) : TotalCart.toFixed(2);
   
   const orderClientSubmit = {
     client: { id: user?.id, email: user?.email, fullname: user?.fullname },
@@ -60,8 +60,6 @@ export const OrderProducts = () => {
 
     const { status } = paymentOrder();
     console.log(status);
-
-    // Aquí puedes implementar el manejo del pedido y la llamada a la API.
   };
 
   return (
