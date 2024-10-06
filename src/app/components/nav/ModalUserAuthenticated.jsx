@@ -28,7 +28,7 @@ export const ModalUserAuthenticated = ({ setToggleModalUserAuth}) => {
 
     }
     return (
-        <div className='bg-stone-100 absolute mt-5 px-20 py-10'>
+        <div className='bg-stone-100 z-10 absolute mt-5 px-20 py-10'>
             <div className='flex mb-5'>
                 <h5 className='text-3xl'>Cuenta</h5>
                 <img src={account} alt={account} />
