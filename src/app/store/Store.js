@@ -5,6 +5,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from 'redux-persist/lib/storage';
 import { thunk } from "redux-thunk";
 import { ProductsDbSlice } from './ProductsDbSlice';
+import { CartTrolleySlice } from './CartTrolleySlice';
 
 // configuracion de la persistencia de la data
 const persistConfig = {
@@ -15,7 +16,8 @@ const persistConfig = {
 // conbinacion de los reducers
 const reducers = combineReducers({
     auth: AuthSlice.reducer,
-    products:ProductsDbSlice.reducer
+    products: ProductsDbSlice.reducer,
+    cart: CartTrolleySlice.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig, reducers)
