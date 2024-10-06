@@ -1,5 +1,5 @@
 import React from 'react';
-import Pdf from "../../../../../public/svg/pdf.svg";
+import Pdf from "../../../../public/svg/pdf.svg";
 
 const orderViewPdf = () => {
     // TODO: REALIZAR PDF PARA VISIONAR EL PDF CON EL PEDIDO DEL CLIENTE
