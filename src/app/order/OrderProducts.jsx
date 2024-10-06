@@ -131,13 +131,13 @@ export const OrderProducts = () => {
                 <div className="p-4 rounded-lg bg-white flex flex-col text-center space-y-4">
                   {/* Total del Carrito */}
                   <div className="space-y-2">
-                    <div className="text-lg md:text-2xl font-semibold text-[#14213d] flex items-center justify-center space-x-2">
+                    <div className="text-xl md:text-2xl font-semibold text-[#14213d] flex items-center justify-center space-x-2">
                       <FaShoppingCart className="text-green-500 w-5 h-5" />
                       <h2>Total Carrito: <span className="text-green-600">{TotalCart?.toFixed(2)}€</span></h2>
                     </div>
 
                     {/* Gastos de envío */}
-                    <span className="text-sm md:text-2xl text-gray-600 flex items-center justify-center space-x-2">
+                    <span className="text-xl md:text-2xl text-gray-600 flex items-center justify-center space-x-2">
                       <FaShippingFast className="text-blue-500 w-5 h-5" />
                       <span>Gastos de envío: <span className="font-semibold">{shippingCost}</span></span>
                     </span>
