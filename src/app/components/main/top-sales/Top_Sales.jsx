@@ -12,8 +12,9 @@ export const Top_Sales = () => {
                 ¡No te pierdas nuestras ofertas en los productos más vendidos!
             </h2>
             {!filterProductsTop?.length && <p className='text-center'>Cargando productos...</p>}
+    
             <div className='mx-auto grid grid-cols-2 md:grid-cols-4 place-items-center pt-10 gap-10'>
-                {filterProductsTop?.length && filterProductsTop?.map(product => <ProductItem key={product?.id} product={product} />)}
+                {filterProductsTop.length > 0 && filterProductsTop?.map(product => <ProductItem key={product?.id} product={product} />)}
             </div>
         </div>
     )
