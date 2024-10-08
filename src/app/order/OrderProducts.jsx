@@ -63,13 +63,13 @@ export const OrderProducts = () => {
   };
 
   return (
-    <div className='w-4/5 mx-auto my-10'>
+    <div className='w-4/5 mx-auto my-20'>
       {
         !listProductCart.length ? <CartIsOut />
           :
           (
             <>
-              <h1 className='text-5xl py-10 text-center'>Mi Carrito</h1>
+              <h1 className='text-5xl py-10'>Mi Carrito</h1>
               <form onSubmit={onSubmitOrder} className='grid lg:grid-cols-[80%_auto] gap-20'>
                 {/* Lista de productos */}
                 <div className='border rounded-lg shadow-lg'>
@@ -90,20 +90,20 @@ export const OrderProducts = () => {
 
                         {/* Precio */}
                         <div>
-                          <p className='text-lg md:text-xl capitalize font-semibold text-gray-700'>{price}€</p>
+                          <p className='text-lg md:text-2xl capitalize font-semibold text-gray-700'>{price}€</p>
                         </div>
 
                         {/* Cantidad */}
                         <div className='flex items-center justify-center space-x-2'>
                           <button
                             type='button'
-                            className='h-10 w-10 bg-gray-300 rounded-full flex justify-center items-center hover:bg-gray-400 transition duration-200'
+                            className='h-10 w-10 md:h-14 md:w-14 bg-gray-300 rounded-full flex justify-center items-center hover:bg-gray-400 transition duration-200'
                             onClick={() => removeProductListOrder(id)}
                           >
                             <FaMinus className='text-lg text-gray-700' />
                           </button>
                           <input
-                            className='h-10 w-12 text-lg md:text-xl text-center border rounded-md'
+                            className='h-10 w-12 text-lg md:text-2xl text-center border rounded-md outline-none cursor-default font-semibold'
                             type="text"
                             name="quantity"
                             value={quantity}
@@ -111,7 +111,7 @@ export const OrderProducts = () => {
                           />
                           <button
                             type='button'
-                            className='h-10 w-10 bg-gray-300 rounded-full flex justify-center items-center hover:bg-gray-400 transition duration-200'
+                            className='h-10 w-10 md:h-14 md:w-14 bg-gray-300 rounded-full flex justify-center items-center hover:bg-gray-400 transition duration-200'
                             onClick={() => dispatch(incrementQuantity(id))}
                           >
                             <FaPlus className='text-lg text-gray-700' />
@@ -120,7 +120,7 @@ export const OrderProducts = () => {
 
                         {/* Total */}
                         <div>
-                          <p className='text-lg md:text-xl font-bold text-gray-700'>{total.toFixed(2)}€</p>
+                          <p className='text-lg md:text-2xl font-bold text-gray-700'>{total.toFixed(2)}€</p>
                         </div>
                       </div>
                     ))}
@@ -148,7 +148,7 @@ export const OrderProducts = () => {
                   {/* Total de la compra */}
                   <div className="flex flex-col space-y-3">
                     <h3 className="text-xl md:text-2xl font-bold text-gray-700">Total compra: <span className="text-red-500">{shippingCostWhithProducts}€</span></h3>
-                    <button className="w-full py-3 rounded-lg bg-[#14213d] text-white font-semibold hover:bg-[#355496] hover:shadow-lg transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-2">
+                    <button className="w-full py-3 rounded-lg bg-[#14213d] text-white font-semibold hover:bg-[#355496] hover:shadow-lg  flex items-center justify-center space-x-2">
                       <FaCheck className="w-5 h-5" />
                       <span>Completar pago</span>
                     </button>
