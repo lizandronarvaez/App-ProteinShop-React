@@ -9,7 +9,16 @@ export const FormDiscounts = () => {
 
     const onSubmitForm = (e) => {
         e.preventDefault();
-        if (dataForm.suscription.length === 0 || !dataForm.suscription.includes("@")) {
+        const emailSuscription = dataForm.suscription;
+
+        if (!emailSuscription.length) {
+            Swal.fire({
+                title: "El campo no puede estar vacío",
+                icon: "error"
+            })
+            return;
+        }
+        if (!suscription.includes("@")) {
             Swal.fire({
                 title: "Debes introducir un email válido",
                 icon: "error"
