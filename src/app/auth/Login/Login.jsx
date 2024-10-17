@@ -8,6 +8,7 @@ import { loginUser } from '../../store/AuthSlice';
 import axios from 'axios';
 import { Input } from '../../components/UI/Input';
 import { ButtonAuth } from '../UI/ButtonAuth';
+import { jwtDecode } from "jwt-decode";
 const formValues = { email: "", password: "" }
 export const Login = () => {
     const dispatch = useDispatch();
@@ -22,13 +23,18 @@ export const Login = () => {
 
     const onSumbitFormData = async (e) => {
         e.preventDefault();
-        
-        if (!formData.email.toLowerCase().includes("@")) {
+        const { email, password } = formData;
+        const emailIsValid = email.toLowerCase().includes("@");
+        if (!email.length && !password.length) {
+            Swal.fire({ title: "", text: "Los campos no pueden estar vacíos", icon: "error" });
+            return;
+        }
+        if (!emailIsValid) {
             Swal.fire({ title: "El correo no es válido", text: "Introduce un correo válido", icon: "error" });
             return;
         }
 
-        if (!formData.password) {
+        if (!password.length) {
             Swal.fire({ title: "Introduce una contraseña", text: "", icon: "error" });
             return;
         }
