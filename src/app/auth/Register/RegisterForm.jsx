@@ -24,7 +24,17 @@ export const RegisterForm = () => {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-    // !!TODO:validar los inputs del formulario
+    const { fullname, email, password, phone, address, postalcode, city, country } = form;
+    const inputsIsValid = !fullname.length || !email.length || !password.length || !phone.length || !address.length || !postalcode.length || !city.length || !country.length;
+
+    if (inputsIsValid) {
+      Swal.fire({
+        title: "¡Campos obligatorios!",
+        text: "Rellena todos los campos para completar el registro de tu cuenta",
+        icon: "error"
+      });
+      return;
+    }
 
     try {
       const { data } = await springBootAxios.post("/clients", form)
@@ -38,7 +48,6 @@ export const RegisterForm = () => {
         return;
       }
     } catch (error) {
-      console.log(error)
       Swal.fire({
         title: "Hubo un error al realizar el registro",
         text: error?.response?.data,
@@ -53,16 +62,16 @@ export const RegisterForm = () => {
       <h1 className='text-3xl md:text-5xl'>Registrar mi cuenta</h1>
       <form onSubmit={handleSubmitForm}>
         <div className='grid md:grid-cols-2 gap-5 py-10'>
-          <Input label="Nombre Completo" name="fullname" type="text" placeholder="Nombre completo" onchange={handleInputForm}/>
-          <Input label="Email" name="email" type="email" value={form.email} onchange={handleInputForm}/>
-          <Input label="Contraseña" name="password" type="password" placeholder="Introduce una contraseña segura" onchange={handleInputForm}/>
-          <Input label="Teléfono" name="phone" type="text" placeholder="Teléfono de contacto" onchange={handleInputForm}/>
-          <Input label="Dirección completa" name="address" type="text" placeholder="Dirección completa" onchange={handleInputForm}/>
-          <Input label="Código Postal" name="postalcode" type="text" placeholder="Código Postal" onchange={handleInputForm}/>
-          <Input label="Ciudad" name="city" type="text" placeholder="Ciudad" onchange={handleInputForm}/>
-          <Input label="País" name="country" type="text" placeholder="País" onchange={handleInputForm}/>
+          <Input label="Nombre Completo" name="fullname" type="text" placeholder="Nombre completo" onchange={handleInputForm} />
+          <Input label="Email" name="email" type="email" value={form.email} onchange={handleInputForm} />
+          <Input label="Contraseña" name="password" type="password" placeholder="Introduce una contraseña segura" onchange={handleInputForm} />
+          <Input label="Teléfono" name="phone" type="text" placeholder="Teléfono de contacto" onchange={handleInputForm} />
+          <Input label="Dirección completa" name="address" type="text" placeholder="Dirección completa" onchange={handleInputForm} />
+          <Input label="Código Postal" name="postalcode" type="text" placeholder="Código Postal" onchange={handleInputForm} />
+          <Input label="Ciudad" name="city" type="text" placeholder="Ciudad" onchange={handleInputForm} />
+          <Input label="País" name="country" type="text" placeholder="País" onchange={handleInputForm} />
         </div>
-        <ButtonAuth type="Completar registro"/>
+        <ButtonAuth type="Completar registro" />
       </form>
     </div>
   )

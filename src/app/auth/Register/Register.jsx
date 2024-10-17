@@ -18,7 +18,17 @@ export const Register = () => {
   }
 
   const handleConfirmForm = () => {
-    if (!form.email.toLowerCase().includes("@")) {
+    const { email } = form;
+    const emailIsValid = email.toLowerCase().includes("@")
+    if (!email.length) {
+      Swal.fire({
+        title: "El campo no puede estar vacío",
+        text: "",
+        icon: "error"
+      });
+      return;
+    }
+    if (!emailIsValid) {
       Swal.fire({
         title: "Introduce un email válido para continuar",
         text: "",
@@ -26,17 +36,16 @@ export const Register = () => {
       });
       return;
     }
-    navigate("/account/form-register", { state: { data: form.email } })
+    navigate("/account/form-register", { state: { data: email } })
   }
   return (
-    <>
-      <div className='flex flex-col justify-between'>
-        <div>
-          <h2 className='md:text-5xl'>Registrar mi cuenta</h2>
-          <Input label="Email" name="email" placeholder="Ingresa tu correo" type="email" onchange={handleValidEmailInput} />
-        </div>
-        <ButtonAuth type="Registro" onclick={handleConfirmForm} />
+    <div className='flex flex-col justify-between'>
+      <div>
+        <h2 className='md:text-5xl'>Registrar mi cuenta</h2>
+        <Input label="Email" name="email" placeholder="Ingresa tu correo" type="email" onchange={handleValidEmailInput} />
       </div>
-    </>
+      <ButtonAuth type="Registro" onclick={handleConfirmForm} />
+    </div>
+
   )
 }
