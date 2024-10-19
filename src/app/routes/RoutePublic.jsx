@@ -9,7 +9,7 @@ import { OrderProducts } from '../order/OrderProducts';
 export const RoutePublic = ({ elements }) => {
   return (
     <Routes>
-      <Route path='/products' element={<ProductsList />} />
+      <Route path='/products/*' element={<ProductsList />} />
       <Route path='/submit-order' element={<OrderProducts />} />
       <Route path='/account' element={<Auth />} />
       <Route path='/account/form-register' element={<RegisterForm />} />
