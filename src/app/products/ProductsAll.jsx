@@ -9,7 +9,9 @@ export const ProductsAll = ({ categories, productsDb }) => {
             <h3 className='text-stone-500 font-semibold lg:text-4xl'>Listado de productos</h3>
             {
                 productsDb &&
-                <div className={`grid ${productsDb.length== 1? 'grid-cols-1':  'grid-cols-2'} ${productsDb.length <= 3 ? 'col-span-full': 'md:grid-cols-4 '} gap-10`}>
+                <div className={`grid gap-10 
+                    ${productsDb.length === 1 ? 'grid-cols-1' : productsDb.length === 2 ? 'grid-cols-2' : productsDb.length === 3 ? 'grid-cols-2' : 'grid-cols-2'} 
+                    ${productsDb.length > 3 ? 'md:grid-cols-4' : 'md:grid-cols-3'}`}>
                     {
                         categories?.length ? (
                             productsDb.filter(product => (
@@ -27,7 +29,7 @@ export const ProductsAll = ({ categories, productsDb }) => {
                 <div className='text-center'>
                     <img
                         className='w-44 mx-auto py-20' src={ProductNotFound} alt={ProductNotFound} />
-                    <p className='text-orange-600'>No se encontrados productos con esa busqueda</p> 
+                    <p className='text-orange-600'>No se encontrados productos con esa busqueda</p>
                 </div>
             }
         </div>
