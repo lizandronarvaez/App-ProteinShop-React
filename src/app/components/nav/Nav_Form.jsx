@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Input } from '../UI/Input'
+import { FaSearch } from 'react-icons/fa'
 const formInput = { description: "" }
+
 export const Nav_Form = () => {
     const navigate = useNavigate();
 
@@ -18,8 +20,10 @@ export const Nav_Form = () => {
         setInputValue(formInput)
     }
     return (
-        <form className='order-1 md:order-none md:w-3/5 md:px-5' onSubmit={submitForm}>
+
+        <form className='order-1 md:order-none md:flex-1 md:px-5 md:max-w-7xl' onSubmit={submitForm}>
             <Input
+                icon={<FaSearch className='text-gray-500'/>}
                 extraClassInput="bg-gray-50 border-orange-100 outline-orange-300 hover:border-orange-300 rounded-lg"
                 type="text"
                 value={inputValue.description}
@@ -28,5 +32,6 @@ export const Nav_Form = () => {
                 onchange={searchProduct}
             />
         </form>
+
     )
 }
